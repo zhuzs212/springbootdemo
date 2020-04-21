@@ -1,0 +1,5 @@
+/* 多模块构建 */
+/* 父模块名称 */
+rootProject.name = 'springbootdemo'
+/* 引入子模块 */
+include 'common','admin'

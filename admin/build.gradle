@@ -1,0 +1,17 @@
+// 子模块项目名 jar名
+archivesBaseName = 'admin'
+jar.enabled = true
+// 需要org.springframework.boot插件 不需要打包成可执行的jar
+bootJar.enabled = true
+
+// 依赖
+dependencies {
+    /*
+        本地library模块依赖
+        implementation：使用了该命令编译的依赖，它仅仅对当前的Module提供接口
+        好处：
+        - 加快编译速度
+        - 隐藏对外不必要的接口
+     */
+    implementation project(':common')
+}
