@@ -1,4 +1,4 @@
-package com.zhuzs.entity.admin;
+package com.zhuzs.common.entity.admin;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
