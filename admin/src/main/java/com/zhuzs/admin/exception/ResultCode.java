@@ -1,4 +1,4 @@
-package com.zhuzs.exception;
+package com.zhuzs.admin.exception;
 
 /**
  * @description：结果类型

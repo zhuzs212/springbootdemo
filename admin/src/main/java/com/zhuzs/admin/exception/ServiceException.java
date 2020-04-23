@@ -1,4 +1,4 @@
-package com.zhuzs.exception;
+package com.zhuzs.admin.exception;
 
 /**
  * @description：业务异常累(业务处理时手动抛出异常)

@@ -1,7 +1,7 @@
-package com.zhuzs.support;
+package com.zhuzs.admin.support;
 
 import com.zhuzs.common.Constant;
-import com.zhuzs.exception.ResultCode;
+import com.zhuzs.admin.exception.ResultCode;
 
 /**
  * @description：结果集

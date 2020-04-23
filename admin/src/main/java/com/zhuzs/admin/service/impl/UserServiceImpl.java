@@ -2,8 +2,8 @@ package com.zhuzs.admin.service.impl;
 
 import com.zhuzs.admin.service.UserService;
 import com.zhuzs.entity.admin.User;
-import com.zhuzs.exception.ResultCode;
-import com.zhuzs.exception.ServiceException;
+import com.zhuzs.admin.exception.ResultCode;
+import com.zhuzs.admin.exception.ServiceException;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,10 +14,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
     @Override
-    public User getUser() throws RuntimeException{
+    public User findUser() throws ServiceException{
         User user = new User("zhuzs", 29);
-        if (true) {
-            throw new ServiceException(ResultCode.USER_NOT_EXIT_EXCEPTION);
+        if (user != null) {
+            throw new ServiceException(ResultCode.ACCOUNT_NOT);
         }
         return user;
     }

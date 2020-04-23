@@ -10,5 +10,5 @@ import org.springframework.stereotype.Service;
  * @date: 2020-04-22 15:27
  */
 public interface UserService {
-    User getUser();
+    User findUser();
 }
