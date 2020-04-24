@@ -51,10 +51,22 @@ public class Result<T> {
         this.data = data;
     }
 
+    public Result(String status, int code, String message) {
+        this.status = status;
+        this.code = code;
+        this.message = message;
+    }
+
     public Result(String status, ResultCode resultCode) {
         this.status = status;
         this.code = resultCode.code;
         this.message = resultCode.message;
+    }
+    public Result(String status, ResultCode resultCode, T data) {
+        this.status = status;
+        this.code = resultCode.code;
+        this.message = resultCode.message;
+        this.data = data;
     }
 
     public Result<T> ok(T data) {

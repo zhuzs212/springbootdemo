@@ -3,6 +3,9 @@ package com.zhuzs.entity.admin;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
 /**
  * @title：User
  * @project_name: springbootdemo
@@ -13,7 +16,14 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class User {
-    private String name;
-    private Integer age;
+    @NotBlank(message = "用户名不能为空！")
+    protected String name;
+    protected Integer age;
+    @Email(message = "邮箱格式错误！")
+    protected String email;
+
+
+    public User() {
+    }
 }
 
