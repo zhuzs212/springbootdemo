@@ -56,6 +56,10 @@ public interface Constant {
         BigDecimal ZEROBXS = new BigDecimal(0.00);
         BigDecimal HUNDRED = new BigDecimal(100.00);
         Double ZEROD = 0D;
+
+        Long MIN_PAGE_SIZE = 1L;
+
+        Long MAX_PAGE_SIZE = 100_000L;
     }
 
 

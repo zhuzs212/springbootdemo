@@ -10,9 +10,14 @@ import com.zhuzs.entity.admin.vo.UserVo;
  * @date: 2020-04-22 15:27
  */
 public interface UserService {
-    UserVo getUser();
-
+    /**
+     * 新增用户
+     * @param userDto
+     * @return
+     */
     Boolean saveUser(UserDto userDto);
+
+    UserVo getUser();
 
     Page<UserVo> listUser(UserDto userDto);
 }

@@ -1,14 +1,16 @@
 package com.zhuzs.admin.support;
 
 import com.zhuzs.common.Constant;
-import com.zhuzs.admin.exception.ResultCode;
+import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * @description：结果集
- *
  * @author: zhu_zishuang
  * @date: 2020-04-22 14:28
  */
+@Data
+@Accessors(chain = true)
 public class Result<T> {
     public static final int SUCCESS = 200;
     /**
@@ -30,45 +32,47 @@ public class Result<T> {
      **/
     private String message;
 
-    public Result() {
-    }
-
-    public Result(ResultCode resultCode) {
-        this.code = resultCode.code;
-        this.message = resultCode.message;
-    }
-
-    public Result(ResultCode resultCode, String message, T data) {
-        this.code = resultCode.code;
-        this.message = message;
-        this.data = data;
-    }
-
-    public Result(String status, int code, String message, T data) {
-        this.status = status;
-        this.code = code;
-        this.message = message;
-        this.data = data;
-    }
-
-    public Result(String status, int code, String message) {
-        this.status = status;
-        this.code = code;
-        this.message = message;
-    }
-
-    public Result(String status, ResultCode resultCode) {
-        this.status = status;
-        this.code = resultCode.code;
-        this.message = resultCode.message;
-    }
-    public Result(String status, ResultCode resultCode, T data) {
-        this.status = status;
-        this.code = resultCode.code;
-        this.message = resultCode.message;
-        this.data = data;
-    }
-
+    //
+//    public Result() {
+//    }
+//
+//    public Result(ResultCode resultCode) {
+//        this.code = resultCode.code;
+//        this.message = resultCode.message;
+//    }
+//
+//    public Result(ResultCode resultCode, String message, T data) {
+//        this.code = resultCode.code;
+//        this.message = message;
+//        this.data = data;
+//    }
+//
+//    public Result(String status, int code, String message, T data) {
+//        this.status = status;
+//        this.code = code;
+//        this.message = message;
+//        this.data = data;
+//    }
+//
+//    public Result(String status, int code, String message) {
+//        this.status = status;
+//        this.code = code;
+//        this.message = message;
+//    }
+//
+//    public Result(String status, ResultCode resultCode) {
+//        this.status = status;
+//        this.code = resultCode.code;
+//        this.message = resultCode.message;
+//    }
+//
+//    public Result(String status, ResultCode resultCode, T data) {
+//        this.status = status;
+//        this.code = resultCode.code;
+//        this.message = resultCode.message;
+//        this.data = data;
+//    }
+//
     public Result<T> ok(T data) {
         this.code = SUCCESS;
         this.data = data;
@@ -80,36 +84,5 @@ public class Result<T> {
         return this;
     }
 
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 }
 

@@ -1,10 +1,11 @@
 package com.zhuzs.entity.admin;
 
-import lombok.AllArgsConstructor;
+import com.zhuzs.entity.admin.validated.Insert;
+import com.zhuzs.entity.admin.validated.Update;
 import lombok.Data;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 /**
  * @title：User
@@ -14,16 +15,29 @@ import javax.validation.constraints.NotBlank;
  * @date: 2020-04-21 10:33
  */
 @Data
-@AllArgsConstructor
 public class User {
-    @NotBlank(message = "用户名不能为空！")
-    protected String name;
-    protected Integer age;
-    @Email(message = "邮箱格式错误！")
-    protected String email;
 
+    /**
+     * 主键ID
+     */
+    private Integer id;
 
-    public User() {
-    }
+    /**
+     * 姓名
+     */
+    @NotEmpty(message = "用户名不能为空！", groups = {Update.class})
+    private String name;
+
+    /**
+     * 年龄
+     */
+    private Integer age;
+
+    /**
+     * 邮箱
+     */
+    @Email(message = "邮箱格式错误！", groups = {Insert.class})
+    private String email;
+
 }
 

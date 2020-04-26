@@ -4,7 +4,6 @@ import com.zhuzs.admin.exception.ResultCode;
 import com.zhuzs.admin.exception.ServiceException;
 import com.zhuzs.admin.support.Result;
 import com.zhuzs.common.Constant;
-import org.apache.tomcat.util.buf.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.bind.BindException;
@@ -33,26 +32,24 @@ public class CustomExceptionHandler {
     }
 
     /**
-     * 数据校验异常
+     * 数据校验异常 及 系统异常
      */
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public Result handleBindException(Exception e, HttpServletRequest request) {
-        Result result ;
-        if(e instanceof MethodArgumentNotValidException) {
-            MethodArgumentNotValidException methodArgumentNotValidException = (MethodArgumentNotValidException)e;
-            result = new Result(Constant.ReqResult.FAIL, ResultCode.PARAMS_NOT_RIGHT.code, methodArgumentNotValidException.getBindingResult().getAllErrors().get(0).getDefaultMessage());
-        }else if(e instanceof BindException){
-            BindException bindException = (BindException)e;
-            result = new Result(Constant.ReqResult.FAIL, ResultCode.PARAMS_NOT_RIGHT.code, bindException.getMessage());
-        }else if(e instanceof ConstraintViolationException){
-            ConstraintViolationException constraintViolationException = (ConstraintViolationException)e;
-            result = new Result(Constant.ReqResult.ERROR, ResultCode.PARAMS_NOT_RIGHT.code, constraintViolationException.getMessage());
-        }else{
-            result = new Result(Constant.ReqResult.FAIL, ResultCode.INTERNAL_SERVER_ERROR);
+        if (e instanceof MethodArgumentNotValidException) {
+            MethodArgumentNotValidException methodArgumentNotValidException = (MethodArgumentNotValidException) e;
+            return new Result().setStatus(Constant.ReqResult.FAIL).setCode(ResultCode.PARAMS_NOT_RIGHT.code).setMessage(methodArgumentNotValidException.getBindingResult().getAllErrors().get(0).getDefaultMessage());
         }
-
-        return result;
+        if (e instanceof BindException) {
+            BindException bindException = (BindException) e;
+            return new Result().setStatus(Constant.ReqResult.FAIL).setCode(ResultCode.PARAMS_NOT_RIGHT.code).setMessage(bindException.getMessage());
+        }
+        if (e instanceof ConstraintViolationException) {
+            ConstraintViolationException constraintViolationException = (ConstraintViolationException) e;
+            return new Result().setStatus(Constant.ReqResult.FAIL).setCode(ResultCode.PARAMS_NOT_RIGHT.code).setMessage(constraintViolationException.getMessage());
+        }
+        return new Result().setStatus(Constant.ReqResult.ERROR).setCode(ResultCode.INTERNAL_SERVER_ERROR.code).setMessage(ResultCode.INTERNAL_SERVER_ERROR.message);
     }
 
     /**
@@ -61,10 +58,9 @@ public class CustomExceptionHandler {
     @ExceptionHandler(value = ServiceException.class)
     @ResponseBody
     public Result handleServiceException(ServiceException e, HttpServletRequest request) {
-        Result result = new Result(Constant.ReqResult.FAIL, ResultCode.ACCOUNT_NOT);
         // 打印业务异常日志
-        logger.error("接口: {} 异常，异常状态码 {}，异常信息：{}", request.getRequestURI(), result.getCode(), result.getMessage(), e);
-        return result;
+        logger.error("接口: {} 异常，异常状态码 {}，异常信息：{}", request.getRequestURI(), ResultCode.ACCOUNT_NOT.code, ResultCode.ACCOUNT_NOT.message, e);
+        return new Result().setStatus(Constant.ReqResult.FAIL).setCode(ResultCode.ACCOUNT_NOT.code).setMessage(ResultCode.ACCOUNT_NOT.message);
     }
 
 }

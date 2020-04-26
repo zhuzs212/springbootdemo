@@ -14,8 +14,5 @@ import lombok.ToString;
 @Data
 @ToString(callSuper = true)
 public class UserVo extends User {
-    public UserVo(String name,Integer age,String email){
-        super(name,age,email);
-    }
 }
 
