@@ -5,7 +5,7 @@ import com.zhuzs.admin.support.BaseResponseCode;
 import com.zhuzs.common.Constant;
 
 /**
- * @description：TODO 响应包装工具类 暂未用到
+ * @description：响应包装工具类
  * @author: zhu_zishuang
  * @date: 2020-04-25 11:09
  */

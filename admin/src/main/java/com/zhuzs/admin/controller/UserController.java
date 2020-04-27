@@ -44,8 +44,8 @@ public class UserController {
      *
      * @return
      */
-    @PostMapping("/getUser")
-    public UserVo getUser() {
+    @PostMapping("/queryUser")
+    public UserVo queryUser() {
         return userService.getUser();
     }
 
@@ -55,8 +55,8 @@ public class UserController {
      * @param userDto
      * @return
      */
-    @PostMapping("/findUserList")
-    public Page<UserVo> findUserList( @RequestBody UserDto userDto) {
+    @PostMapping("/queryUsers")
+    public Page<UserVo> queryUsers( @RequestBody UserDto userDto) {
         return userService.listUser(userDto);
     }
 }
