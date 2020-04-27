@@ -1,7 +1,7 @@
 package com.zhuzs.admin.advice;
 
-import com.zhuzs.admin.exception.ServiceException;
-import com.zhuzs.admin.support.Result;
+import com.zhuzs.admin.support.BaseResponseCode;
+import com.zhuzs.admin.support.BaseResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
@@ -27,11 +27,11 @@ public class CustomWrapHandle<T> implements ResponseBodyAdvice<T> {
 
     @Override
     public T beforeBodyWrite(T body, MethodParameter returnType, MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
-        Result result;
+        System.out.println(" ClassName: "+body.getClass().getName());
         /**
          * 业务异常信息
          */
-        if (body.getClass().equals(ServiceException.class)) {
+        if (body.getClass().equals(BaseResponse.class)) {
             // 打印业务异常日志
             log.error("接口: {} ", "业务异常！");
             return body;
@@ -39,12 +39,13 @@ public class CustomWrapHandle<T> implements ResponseBodyAdvice<T> {
         /**
          * 增、删、改操作返回的状态
          */
-        if (body.getClass().equals(Boolean.class)) {
+        if (body.getClass().equals(BaseResponseCode.class)) {
             log.error("接口: {} ", "增删改方法！");
-            return (T) new Result().ok();
+            BaseResponseCode resultCode = (BaseResponseCode)body;
+            return (T) new BaseResponse().ok(resultCode.code,resultCode.message);
         }
 
-        return (T) new Result().ok(body);
+        return (T) new BaseResponse().ok(body);
     }
 }
 

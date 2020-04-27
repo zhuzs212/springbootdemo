@@ -1,6 +1,6 @@
-package com.zhuzs.entity.admin.vo;
+package com.zhuzs.admin.entity.vo;
 
-import com.zhuzs.entity.admin.User;
+import com.zhuzs.admin.entity.User;
 import lombok.Data;
 import lombok.ToString;
 

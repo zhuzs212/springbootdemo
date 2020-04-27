@@ -2,10 +2,10 @@ package com.zhuzs.admin.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zhuzs.admin.service.UserService;
-import com.zhuzs.entity.admin.dto.UserDto;
-import com.zhuzs.entity.admin.validated.Insert;
-import com.zhuzs.entity.admin.validated.Update;
-import com.zhuzs.entity.admin.vo.UserVo;
+import com.zhuzs.admin.entity.dto.UserDto;
+import com.zhuzs.admin.support.validated.Insert;
+import com.zhuzs.admin.support.validated.Update;
+import com.zhuzs.admin.entity.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,7 +35,7 @@ public class UserController {
      * @return
      */
     @PostMapping("/saveUser")
-    public Boolean saveUser(@Validated({Insert.class, Update.class}) @RequestBody UserDto userDto) {
+    public Enum saveUser(@Validated({Insert.class, Update.class}) @RequestBody UserDto userDto) {
         return userService.saveUser(userDto);
     }
 

@@ -1,4 +1,6 @@
-package com.zhuzs.admin.exception;
+package com.zhuzs.admin.support;
+
+import lombok.experimental.Accessors;
 
 /**
  * @description：结果类型
@@ -6,7 +8,8 @@ package com.zhuzs.admin.exception;
  * @author: zhu_zishuang
  * @date: 2020-04-22 14:29
  */
-public enum ResultCode {
+@Accessors(chain = true)
+public enum BaseResponseCode {
     /* ============================ 通用错误码 ========================== **/
     /**
      * 禁止访问 303
@@ -66,8 +69,19 @@ public enum ResultCode {
      * 日期格式处理异常
      **/
     DATE_FORMAT_EXCEPTION(508, "日期格式处理异常"),
-
-
+    /* ===========================请求成功返回====================================== */
+    /**
+     * 新增操作成功
+     */
+    SAVE_SUCCESS(201,"新增成功！"),
+    /**
+     * 修改操作成功
+     */
+    UPDATE_SUCCESS(202,"修改成功！"),
+    /**
+     * 删除操作成功
+     */
+    DELETE_SUCCESS(203,"删除成功！"),
     /* ===========================User====================================== */
     ACCOUNT_NOT(10004, "账号异常!"),
     USER_NOT_EXIT_EXCEPTION(601,"用户不存在异常");
@@ -75,7 +89,7 @@ public enum ResultCode {
     public final int code;
     public String message;
 
-    ResultCode(int code, String message) {
+    BaseResponseCode(int code, String message) {
         this.code = code;
         this.message = message;
     }

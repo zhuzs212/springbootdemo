@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//http://mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zhuzs.admin.mapper.UserMapper">
-    <resultMap id="BASE_MAP" type="com.zhuzs.entity.admin.vo.UserVo">
+    <resultMap id="BASE_MAP" type="com.zhuzs.admin.entity.vo.UserVo">
 
     </resultMap>
     <sql id="BASE_COLUMN">
@@ -24,7 +24,7 @@
         )
     </insert>
 
-    <select id="listUser" resultType="com.zhuzs.entity.admin.vo.UserVo">
+    <select id="listUser" resultType="com.zhuzs.admin.entity.vo.UserVo">
         select
             <include refid="BASE_COLUMN"/>
         from User

@@ -1,14 +1,12 @@
 package com.zhuzs.admin.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.zhuzs.admin.support.BaseResponseCode;
+import com.zhuzs.admin.exception.ServiceException;
 import com.zhuzs.admin.mapper.UserMapper;
 import com.zhuzs.admin.service.UserService;
-import com.zhuzs.common.Constant;
-import com.zhuzs.entity.admin.User;
-import com.zhuzs.admin.exception.ResultCode;
-import com.zhuzs.admin.exception.ServiceException;
-import com.zhuzs.entity.admin.dto.UserDto;
-import com.zhuzs.entity.admin.vo.UserVo;
+import com.zhuzs.admin.entity.dto.UserDto;
+import com.zhuzs.admin.entity.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,21 +19,21 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     /**
-     *
+     * 注入 User 持久层
      */
     @Autowired
     private UserMapper userMapper;
 
     @Override
-    public Boolean saveUser(UserDto userDto) {
-        return userMapper.saveUser(userDto) == Constant.Number.ONE.intValue();
+    public Enum saveUser(UserDto userDto) {
+        userMapper.saveUser(userDto);
+        return BaseResponseCode.SAVE_SUCCESS;
     }
 
     @Override
-    public UserVo getUser() throws ServiceException{
-//        UserVo userVo = new UserVo("zhuzs", 29,"");
-        if(true){
-            throw new ServiceException(ResultCode.USER_NOT_EXIT_EXCEPTION);
+    public UserVo getUser() throws ServiceException {
+        if (true) {
+            throw new ServiceException(BaseResponseCode.USER_NOT_EXIT_EXCEPTION);
         }
         return null;
     }

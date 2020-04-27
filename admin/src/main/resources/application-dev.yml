@@ -12,6 +12,14 @@ spring:
     active: dev
   application:
     name: admin
+  # Redis
+  #第几个数据库，由于redis中数据库不止一个（默认会开启15个）
+  redis:
+    database: 1
+  # 也可指定为127.0.0.1
+    host: localhost
+    port: 6379
+    password:
 
 # 连接池
   datasource:
@@ -27,6 +35,7 @@ mybatis-plus:
   typeAliasesPackage: com.zhuzs.entity
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
 
 # 日志记录
 logging:

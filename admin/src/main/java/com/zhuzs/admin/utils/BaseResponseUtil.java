@@ -1,13 +1,14 @@
 package com.zhuzs.admin.utils;
 
-import com.zhuzs.admin.support.Result;
+import com.zhuzs.admin.support.BaseResponse;
 
 /**
- * @description：响应包装工具类
+ * @description：TODO 响应包装工具类 暂未用到
  * @author: zhu_zishuang
  * @date: 2020-04-25 11:09
  */
 public class BaseResponseUtil {
+
     /**
      * 成功编码
      */
@@ -32,8 +33,8 @@ public class BaseResponseUtil {
      *
      * @return 响应实体
      */
-    public static Result success() {
-        return new Result().setCode(SUCCESS_CODE).setMessage(DEFAULT_SUCCESS_MESSAGE);
+    public static BaseResponse success() {
+        return new BaseResponse().setCode(SUCCESS_CODE).setMessage(DEFAULT_SUCCESS_MESSAGE);
     }
 
     /**
@@ -42,7 +43,7 @@ public class BaseResponseUtil {
      * @param data 数据实体
      * @return 响应实体
      */
-    public static Result success(Object data) {
+    public static BaseResponse success(Object data) {
         return success().setData(data);
     }
 
@@ -52,8 +53,8 @@ public class BaseResponseUtil {
      * @param message 异常消息
      * @return 响应实体
      */
-    public static Result fail(String message) {
-        return new Result().setCode(FAIL_CODE).setMessage(message);
+    public static BaseResponse fail(String message) {
+        return new BaseResponse().setCode(FAIL_CODE).setMessage(message);
     }
 }
 

@@ -1,8 +1,8 @@
-package com.zhuzs.entity.admin.dto;
+package com.zhuzs.admin.entity.dto;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zhuzs.entity.admin.User;
-import com.zhuzs.entity.admin.vo.UserVo;
+import com.zhuzs.admin.entity.User;
+import com.zhuzs.admin.entity.vo.UserVo;
 import lombok.Data;
 import lombok.ToString;
 

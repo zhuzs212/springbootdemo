@@ -1,8 +1,8 @@
 package com.zhuzs.admin.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zhuzs.entity.admin.dto.UserDto;
-import com.zhuzs.entity.admin.vo.UserVo;
+import com.zhuzs.admin.entity.dto.UserDto;
+import com.zhuzs.admin.entity.vo.UserVo;
 
 /**
  * @description：user service接口
@@ -15,7 +15,7 @@ public interface UserService {
      * @param userDto
      * @return
      */
-    Boolean saveUser(UserDto userDto);
+    Enum saveUser(UserDto userDto);
 
     UserVo getUser();
 

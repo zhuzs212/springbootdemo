@@ -2,9 +2,9 @@ package com.zhuzs.admin.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zhuzs.entity.admin.User;
-import com.zhuzs.entity.admin.dto.UserDto;
-import com.zhuzs.entity.admin.vo.UserVo;
+import com.zhuzs.admin.entity.User;
+import com.zhuzs.admin.entity.dto.UserDto;
+import com.zhuzs.admin.entity.vo.UserVo;
 import org.apache.ibatis.annotations.Param;
 
 /**
