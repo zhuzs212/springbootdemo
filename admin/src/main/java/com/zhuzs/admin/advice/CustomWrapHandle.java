@@ -2,6 +2,7 @@ package com.zhuzs.admin.advice;
 
 import com.zhuzs.admin.support.BaseResponseCode;
 import com.zhuzs.admin.support.BaseResponse;
+import com.zhuzs.admin.utils.BaseResponseUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
@@ -41,11 +42,10 @@ public class CustomWrapHandle<T> implements ResponseBodyAdvice<T> {
          */
         if (body.getClass().equals(BaseResponseCode.class)) {
             log.error("接口: {} ", "增删改方法！");
-            BaseResponseCode resultCode = (BaseResponseCode)body;
-            return (T) new BaseResponse().ok(resultCode.code,resultCode.message);
+            return (T)BaseResponseUtil.success((BaseResponseCode)body);
         }
 
-        return (T) new BaseResponse().ok(body);
+        return (T)BaseResponseUtil.success(body);
     }
 }
 

@@ -1,6 +1,8 @@
 package com.zhuzs.admin.utils;
 
 import com.zhuzs.admin.support.BaseResponse;
+import com.zhuzs.admin.support.BaseResponseCode;
+import com.zhuzs.common.Constant;
 
 /**
  * @description：TODO 响应包装工具类 暂未用到
@@ -13,10 +15,7 @@ public class BaseResponseUtil {
      * 成功编码
      */
     private static final Integer SUCCESS_CODE = 200;
-    /**
-     * 失败编码
-     */
-    private static final Integer FAIL_CODE = 500;
+
     /**
      * 默认操作成功提示
      */
@@ -48,13 +47,39 @@ public class BaseResponseUtil {
     }
 
     /**
-     * 包裹响应对象，此方法适合系统发生异常（校验框架异常、自定义业务异常、系统异常）场景下调用
+     * 包裹响应对象，此方法适合 增、删、改 操作有数据实体场景下调用
+     * @param baseResponseCode
+     * @return
+     */
+    public static BaseResponse success(BaseResponseCode baseResponseCode) {
+        return success().setCode(baseResponseCode.code).setMessage(baseResponseCode.message);
+    }
+
+    /**
+     * 包裹响应对象，校验框架异常 场景下调用
      *
      * @param message 异常消息
      * @return 响应实体
      */
-    public static BaseResponse fail(String message) {
-        return new BaseResponse().setCode(FAIL_CODE).setMessage(message);
+    public static BaseResponse fail(Integer code, String message) {
+        return new BaseResponse().setStatus(Constant.ReqResult.FAIL).setCode(code).setMessage(message);
+    }
+
+    /**
+     * 包裹响应对象，自定义业务异常 场景下调用
+     * @param baseResponseCode
+     * @return
+     */
+    public static BaseResponse fail(BaseResponseCode baseResponseCode) {
+        return new BaseResponse().setStatus(Constant.ReqResult.FAIL).setCode(baseResponseCode.code).setMessage(baseResponseCode.message);
+    }
+
+    /**
+     * 包裹响应对象，系统异常 场景下调用
+     * @return 响应实体
+     */
+    public static BaseResponse error() {
+        return new BaseResponse().setStatus(Constant.ReqResult.ERROR).setCode(BaseResponseCode.INTERNAL_SERVER_ERROR.code).setMessage(BaseResponseCode.INTERNAL_SERVER_ERROR.message);
     }
 }
 
