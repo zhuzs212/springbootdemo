@@ -80,7 +80,7 @@ public class BaseResponseUtil {
      * @return 响应实体
      */
     public static BaseResponse error(String message) {
-        return new BaseResponse().setStatus(Constant.ReqResult.ERROR).setCode(BaseResponseCode.INTERNAL_SERVER_ERROR.code).setMessage(BaseResponseCode.INTERNAL_SERVER_ERROR.message);
+        return new BaseResponse().setStatus(Constant.ReqResult.ERROR).setCode(BaseResponseCode.INTERNAL_SERVER_ERROR.code).setMessage(message);
     }
 }
 
