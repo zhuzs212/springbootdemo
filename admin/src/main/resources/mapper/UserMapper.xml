@@ -11,7 +11,7 @@
         email
     </sql>
     <insert id="saveUser">
-        insert into User(
+        insert into user(
             id,
             name,
             age,
@@ -27,6 +27,6 @@
     <select id="listUser" resultType="com.zhuzs.admin.entity.vo.UserVo">
         select
             <include refid="BASE_COLUMN"/>
-        from User
+        from user
     </select>
 </mapper>

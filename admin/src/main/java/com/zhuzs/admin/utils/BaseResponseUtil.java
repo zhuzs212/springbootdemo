@@ -76,9 +76,10 @@ public class BaseResponseUtil {
 
     /**
      * 包裹响应对象，系统异常 场景下调用
+     * @param message
      * @return 响应实体
      */
-    public static BaseResponse error() {
+    public static BaseResponse error(String message) {
         return new BaseResponse().setStatus(Constant.ReqResult.ERROR).setCode(BaseResponseCode.INTERNAL_SERVER_ERROR.code).setMessage(BaseResponseCode.INTERNAL_SERVER_ERROR.message);
     }
 }

@@ -4,6 +4,7 @@ import com.zhuzs.admin.common.BaseResponseCode;
 import com.zhuzs.admin.exception.ServiceException;
 import com.zhuzs.admin.common.BaseResponse;
 import com.zhuzs.admin.utils.BaseResponseUtil;
+import org.apache.ibatis.binding.BindingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.bind.BindException;
@@ -50,7 +51,13 @@ public class CustomExceptionHandler {
             ConstraintViolationException constraintViolationException = (ConstraintViolationException) e;
             return BaseResponseUtil.fail(BaseResponseCode.PARAMS_NOT_RIGHT.code,constraintViolationException.getMessage());
         }
-        return BaseResponseUtil.error();
+        // SQL 操作异常
+        if (e instanceof BindingException) {
+            BindingException bindingException = (BindingException) e;
+            return BaseResponseUtil.fail(BaseResponseCode.SQL_ERROR_EXCEPTION.code, bindingException.getMessage());
+
+        }
+        return BaseResponseUtil.error(e.getMessage());
     }
 
     /**
