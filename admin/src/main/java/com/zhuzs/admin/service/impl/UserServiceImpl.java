@@ -1,7 +1,7 @@
 package com.zhuzs.admin.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zhuzs.admin.support.BaseResponseCode;
+import com.zhuzs.admin.common.BaseResponseCode;
 import com.zhuzs.admin.exception.ServiceException;
 import com.zhuzs.admin.mapper.UserMapper;
 import com.zhuzs.admin.service.UserService;

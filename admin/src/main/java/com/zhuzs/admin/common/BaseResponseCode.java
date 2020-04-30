@@ -1,4 +1,4 @@
-package com.zhuzs.admin.support;
+package com.zhuzs.admin.common;
 
 import lombok.experimental.Accessors;
 

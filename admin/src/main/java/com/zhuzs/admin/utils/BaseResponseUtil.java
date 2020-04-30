@@ -1,7 +1,7 @@
 package com.zhuzs.admin.utils;
 
-import com.zhuzs.admin.support.BaseResponse;
-import com.zhuzs.admin.support.BaseResponseCode;
+import com.zhuzs.admin.common.BaseResponse;
+import com.zhuzs.admin.common.BaseResponseCode;
 import com.zhuzs.common.Constant;
 
 /**

@@ -1,4 +1,4 @@
-package com.zhuzs.admin.support.validated;
+package com.zhuzs.admin.common.validated;
 
 /**
  * @description：Validated 分组校验-新增

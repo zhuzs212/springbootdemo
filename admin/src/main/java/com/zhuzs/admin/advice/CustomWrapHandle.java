@@ -1,7 +1,7 @@
 package com.zhuzs.admin.advice;
 
-import com.zhuzs.admin.support.BaseResponseCode;
-import com.zhuzs.admin.support.BaseResponse;
+import com.zhuzs.admin.common.BaseResponseCode;
+import com.zhuzs.admin.common.BaseResponse;
 import com.zhuzs.admin.utils.BaseResponseUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;

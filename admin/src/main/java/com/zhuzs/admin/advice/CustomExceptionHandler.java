@@ -1,10 +1,9 @@
 package com.zhuzs.admin.advice;
 
-import com.zhuzs.admin.support.BaseResponseCode;
+import com.zhuzs.admin.common.BaseResponseCode;
 import com.zhuzs.admin.exception.ServiceException;
-import com.zhuzs.admin.support.BaseResponse;
+import com.zhuzs.admin.common.BaseResponse;
 import com.zhuzs.admin.utils.BaseResponseUtil;
-import com.zhuzs.common.Constant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.bind.BindException;

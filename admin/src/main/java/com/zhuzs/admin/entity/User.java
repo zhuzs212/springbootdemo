@@ -1,7 +1,7 @@
 package com.zhuzs.admin.entity;
 
-import com.zhuzs.admin.support.validated.Insert;
-import com.zhuzs.admin.support.validated.Update;
+import com.zhuzs.admin.common.validated.Insert;
+import com.zhuzs.admin.common.validated.Update;
 import lombok.Data;
 
 import javax.validation.constraints.Email;
