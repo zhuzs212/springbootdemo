@@ -16,7 +16,7 @@ import javax.validation.ConstraintViolationException;
 import java.sql.SQLException;
 
 /**
- * @description：全局异常处理
+ * @description：自定义异常处理器
  * @author: zhu_zishuang
  * @date: 2020-04-23 09:51
  */
@@ -39,28 +39,32 @@ public class CustomExceptionHandler {
     public BaseResponse handleBindException(Exception e, HttpServletRequest request) {
         if (e instanceof MethodArgumentNotValidException) {
             MethodArgumentNotValidException methodArgumentNotValidException = (MethodArgumentNotValidException) e;
+            logger.error("登录异常，异常信息：{}", methodArgumentNotValidException.getMessage());
             return BaseResponseUtil.fail(BaseResponseCode.PARAMS_NOT_RIGHT.code,methodArgumentNotValidException.getBindingResult().getAllErrors().get(0).getDefaultMessage());
         }
         if (e instanceof BindException) {
             BindException bindException = (BindException) e;
+            logger.error("登录异常，异常信息：{}", bindException.getMessage());
             return BaseResponseUtil.fail(BaseResponseCode.PARAMS_NOT_RIGHT.code,bindException.getMessage());
 
         }
         if (e instanceof ConstraintViolationException) {
             ConstraintViolationException constraintViolationException = (ConstraintViolationException) e;
+            logger.error("登录异常，异常信息：{}", constraintViolationException.getMessage());
             return BaseResponseUtil.fail(BaseResponseCode.PARAMS_NOT_RIGHT.code,constraintViolationException.getMessage());
         }
         // SQL 操作异常
         if (e instanceof SQLException) {
             SQLException sqlException = (SQLException) e;
+            logger.error("SQL异常，异常信息：{}", sqlException.getMessage());
             return BaseResponseUtil.fail(BaseResponseCode.SQL_ERROR_EXCEPTION.code, sqlException.getMessage());
 
         }
-        System.out.println(" message: "+e.getCause());
+        logger.error("系统异常，异常信息：{}", e.getMessage());
         return BaseResponseUtil.error(e.getCause().toString());
     }
 
-    /**
+    /**log.error("发生系统异常，异常信息：{}", exception.getMessage());
      * 业务异常
      */
     @ExceptionHandler(value = ServiceException.class)

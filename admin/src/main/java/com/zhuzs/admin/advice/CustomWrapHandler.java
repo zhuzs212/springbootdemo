@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 /**
- * @description：
+ * @description：自定义包装处理类
  * @author: zhu_zishuang
  * @date: 2020-04-24 14:01
  */
 @ControllerAdvice
 @Slf4j
-public class CustomWrapHandle<T> implements ResponseBodyAdvice<T> {
+public class CustomWrapHandler<T> implements ResponseBodyAdvice<T> {
     @Override
     public boolean supports(MethodParameter methodParameter, Class<? extends HttpMessageConverter<?>> converterType) {
         return MappingJackson2HttpMessageConverter.class.isAssignableFrom(converterType);
@@ -28,9 +28,9 @@ public class CustomWrapHandle<T> implements ResponseBodyAdvice<T> {
 
     @Override
     public T beforeBodyWrite(T body, MethodParameter returnType, MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
-        System.out.println(" ClassName: "+body.getClass().getName());
+//        System.out.println(" ClassName: "+body.getClass().getName());
         /**
-         * 业务异常信息
+         * 系统异常、业务异常 等信息
          */
         if (body.getClass().equals(BaseResponse.class)) {
             // 打印业务异常日志
