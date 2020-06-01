@@ -10,6 +10,7 @@
         age,
         email
     </sql>
+    <!--  新增用户  -->
     <insert id="saveUser">
         insert into user(
             id,
@@ -24,9 +25,10 @@
         )
     </insert>
 
+    <!--  查询用户列表 分页  -->
     <select id="listUser" resultType="com.zhuzs.admin.entity.vo.UserVo">
         select
-            <include refid="BASE_COLUMN"/>
+        <include refid="BASE_COLUMN"/>
         from user
     </select>
 </mapper>

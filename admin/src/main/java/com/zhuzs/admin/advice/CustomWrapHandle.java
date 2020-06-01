@@ -34,14 +34,14 @@ public class CustomWrapHandle<T> implements ResponseBodyAdvice<T> {
          */
         if (body.getClass().equals(BaseResponse.class)) {
             // 打印业务异常日志
-            log.error("接口: {} ", "业务异常！");
+            log.error("接口: {} , 业务异常！" + request.getURI());
             return body;
         }
         /**
          * 增、删、改操作返回的状态
          */
         if (body.getClass().equals(BaseResponseCode.class)) {
-            log.error("接口: {} ", "增删改方法！");
+            log.error("接口: {} , 增删改方法！" + request.getURI());
             return (T)BaseResponseUtil.success((BaseResponseCode)body);
         }
 

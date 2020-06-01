@@ -2,13 +2,15 @@ package com.zhuzs.admin.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zhuzs.admin.common.BaseResponseCode;
+import com.zhuzs.admin.entity.dto.UserDto;
+import com.zhuzs.admin.entity.vo.UserVo;
 import com.zhuzs.admin.exception.ServiceException;
 import com.zhuzs.admin.mapper.UserMapper;
 import com.zhuzs.admin.service.UserService;
-import com.zhuzs.admin.entity.dto.UserDto;
-import com.zhuzs.admin.entity.vo.UserVo;
+import com.zhuzs.common.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 /**
  * @description：user service实现
@@ -26,8 +28,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Enum saveUser(UserDto userDto) {
-        userMapper.saveUser(userDto);
-        return BaseResponseCode.SAVE_SUCCESS;
+        return userMapper.saveUser(userDto) == Constant.Number.ONE ? BaseResponseCode.SAVE_SUCCESS : BaseResponseCode.OPERATION_FAILURE;
     }
 
     @Override

@@ -17,7 +17,16 @@ public interface UserService {
      */
     Enum saveUser(UserDto userDto);
 
+    /**
+     * 查询单个用户
+     * @return
+     */
     UserVo getUser();
 
+    /**
+     * 查询用户列表 分页
+     * @param userDto
+     * @return
+     */
     Page<UserVo> listUser(UserDto userDto);
 }
