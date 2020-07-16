@@ -2,6 +2,7 @@ package com.zhuzs.admin.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zhuzs.admin.common.BaseResponseCode;
+import com.zhuzs.admin.entity.CodeValue;
 import com.zhuzs.admin.entity.dto.UserDto;
 import com.zhuzs.admin.entity.vo.UserVo;
 import com.zhuzs.admin.exception.ServiceException;
@@ -10,6 +11,9 @@ import com.zhuzs.admin.service.UserService;
 import com.zhuzs.common.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -43,6 +47,28 @@ public class UserServiceImpl implements UserService {
     public Page<UserVo> listUser(UserDto userDto) {
         Page<UserVo> page = userDto.getPage();
         return userMapper.listUser(page, userDto);
+    }
+
+    @Override
+    public List<CodeValue> config(UserDto userDto) {
+
+        List<CodeValue> list = new ArrayList<>();
+
+        // 数据解析
+        String jsonData = userDto.getJsonData();
+        jsonData = jsonData.substring(2,jsonData.length()-2);
+
+        String[] data = jsonData.split(",");
+        for(String str:data){
+            String[] keyValues = str.split(":");
+            System.out.println("value1:"+keyValues[0].split("'")[1]+", "+"value2:"+keyValues[1].split("'")[1]);
+            CodeValue codeValue = new CodeValue();
+            codeValue.setSysCode(keyValues[0].split("'")[1]);
+            codeValue.setDefaultValue(keyValues[1].split("'")[1]);
+            list.add(codeValue);
+
+        }
+        return list;
     }
 }
 

@@ -4,6 +4,11 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * @Description TODO
+ * @Author zhu_zishuang
+ * @Date 2020-06-13
+ */
 @MapperScan("com.zhuzs.admin.mapper")
 @SpringBootApplication
 public class AdminApplication {

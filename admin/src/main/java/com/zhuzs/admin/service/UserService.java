@@ -3,6 +3,9 @@ package com.zhuzs.admin.service;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zhuzs.admin.entity.dto.UserDto;
 import com.zhuzs.admin.entity.vo.UserVo;
+import com.zhuzs.admin.entity.CodeValue;
+
+import java.util.List;
 
 /**
  * @description：user service接口
@@ -29,4 +32,11 @@ public interface UserService {
      * @return
      */
     Page<UserVo> listUser(UserDto userDto);
+
+    /**
+     * 用户基本配置
+     * @param userDto
+     * @return
+     */
+    List<CodeValue> config(UserDto userDto);
 }

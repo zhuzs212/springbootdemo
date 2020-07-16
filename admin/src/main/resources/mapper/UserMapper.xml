@@ -30,5 +30,11 @@
         select
         <include refid="BASE_COLUMN"/>
         from user
+        <where>
+            <if test="userDto.name != null and userDto.name != ''">
+                -- 模糊查询，前置%则不走索引，会全表扫描
+                name like CONCAT(#{userDto.name}, '%')
+            </if>
+        </where>
     </select>
 </mapper>

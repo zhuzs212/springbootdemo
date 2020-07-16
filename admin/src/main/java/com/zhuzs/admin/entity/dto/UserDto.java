@@ -3,6 +3,8 @@ package com.zhuzs.admin.entity.dto;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zhuzs.admin.entity.User;
 import com.zhuzs.admin.entity.vo.UserVo;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.ToString;
 
@@ -15,11 +17,19 @@ import lombok.ToString;
  */
 @Data
 @ToString
+@ApiModel("用户实体类")
 public class UserDto extends User {
+
+    /**
+     * JSON 数据
+     */
+    @ApiModelProperty("JSON 数据")
+    String jsonData;
 
     /**
      * 分页数据
      */
+    @ApiModelProperty("分页数据")
     Page<UserVo> page = new Page<>();
 }
 

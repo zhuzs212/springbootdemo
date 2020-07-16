@@ -25,6 +25,12 @@ public class ServiceException extends RuntimeException {
         this(resultCode.message, resultCode);
     }
 
+    /**
+     *
+     * @param message
+     * @param resultCode
+     * @param data
+     */
     public ServiceException(String message, BaseResponseCode resultCode, Object data) {
         this(message, resultCode);
         this.data = data;

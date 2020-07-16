@@ -36,6 +36,10 @@ mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
+# swagger ui
+swagger:
+  enabled: true
+
 
 # 日志记录
 logging:

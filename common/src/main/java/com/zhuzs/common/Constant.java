@@ -81,6 +81,7 @@ public interface Constant {
         String ONE = "001";
         String String_ZERO = "0";
         String NULL_VALUE = "";
+        String SPLIT_CLASS = " ";
         String UNDER_LINE = "_";
         String MIDDLE_LINE = "-";
         String VIRGULE = "/";

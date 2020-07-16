@@ -1,17 +1,20 @@
 package com.zhuzs.admin.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zhuzs.admin.service.UserService;
-import com.zhuzs.admin.entity.dto.UserDto;
 import com.zhuzs.admin.common.validated.Insert;
 import com.zhuzs.admin.common.validated.Update;
+import com.zhuzs.admin.entity.dto.UserDto;
 import com.zhuzs.admin.entity.vo.UserVo;
+import com.zhuzs.admin.service.UserService;
+import com.zhuzs.admin.entity.CodeValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * @description：用户控制器
@@ -56,8 +59,19 @@ public class UserController {
      * @return
      */
     @PostMapping("/queryUsers")
-    public Page<UserVo> queryUsers( @RequestBody UserDto userDto) {
+    public Page<UserVo> queryUsers(@RequestBody UserDto userDto) {
         return userService.listUser(userDto);
+    }
+
+    /**
+     * 用户配置
+     *
+     * @param userDto
+     * @return
+     */
+    @PostMapping("config")
+    public List<CodeValue> config(@RequestBody UserDto userDto) {
+        return userService.config(userDto);
     }
 }
 
