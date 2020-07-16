@@ -86,24 +86,34 @@ public enum BaseResponseCode implements ExceptionInfo {
     ACCOUNT_NOT(10004, "账号异常!"),
     USER_NOT_EXIT_EXCEPTION(601,"用户不存在异常");
 
-    public final int code;
-    public String message;
+    /**
+     * 结果类型CODE
+     */
+    private final int code;
+    /**
+     * 结果类型描述
+     */
+    private final String message;
 
+    /**
+     * 构造器
+     *
+     * @param code
+     * @param message
+     */
     BaseResponseCode(int code, String message) {
         this.code = code;
         this.message = message;
     }
 
+    @Override
     public int getCode() {
         return code;
     }
 
+    @Override
     public String getMessage() {
         return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 }
 

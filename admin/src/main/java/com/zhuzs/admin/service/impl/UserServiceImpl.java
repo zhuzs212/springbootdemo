@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserVo getUser() throws ServiceException {
+    public UserVo getUser() {
         if (true) {
             throw new ServiceException(BaseResponseCode.USER_NOT_EXIT_EXCEPTION);
         }

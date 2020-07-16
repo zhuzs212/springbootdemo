@@ -52,7 +52,7 @@ public class BaseResponseUtil {
      * @return
      */
     public static BaseResponse success(BaseResponseCode baseResponseCode) {
-        return success().setCode(baseResponseCode.code).setMessage(baseResponseCode.message);
+        return success().setCode(baseResponseCode.getCode()).setMessage(baseResponseCode.getMessage());
     }
 
     /**
@@ -71,7 +71,7 @@ public class BaseResponseUtil {
      * @return
      */
     public static BaseResponse fail(BaseResponseCode baseResponseCode) {
-        return new BaseResponse().setStatus(Constant.ReqResult.FAIL).setCode(baseResponseCode.code).setMessage(baseResponseCode.message);
+        return new BaseResponse().setStatus(Constant.ReqResult.FAIL).setCode(baseResponseCode.getCode()).setMessage(baseResponseCode.getMessage());
     }
 
     /**
@@ -80,7 +80,7 @@ public class BaseResponseUtil {
      * @return 响应实体
      */
     public static BaseResponse error(String message) {
-        return new BaseResponse().setStatus(Constant.ReqResult.ERROR).setCode(BaseResponseCode.INTERNAL_SERVER_ERROR.code).setMessage(message);
+        return new BaseResponse().setStatus(Constant.ReqResult.ERROR).setCode(BaseResponseCode.INTERNAL_SERVER_ERROR.getCode()).setMessage(message);
     }
 }
 
