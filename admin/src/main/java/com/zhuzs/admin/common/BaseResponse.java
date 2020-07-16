@@ -16,7 +16,7 @@ public class BaseResponse<T> {
     /**
      * success：成功，fail：业务返回的失败，error：非业务异常失败
      */
-    private String status = Constant.ReqResult.SUCCESS;
+    private String status = Constant.SUCCESS;
 
     /**
      * 状态码

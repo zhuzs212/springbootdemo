@@ -62,7 +62,7 @@ public class BaseResponseUtil {
      * @return 响应实体
      */
     public static BaseResponse fail(Integer code, String message) {
-        return new BaseResponse().setStatus(Constant.ReqResult.FAIL).setCode(code).setMessage(message);
+        return new BaseResponse().setStatus(Constant.FAIL).setCode(code).setMessage(message);
     }
 
     /**
@@ -71,7 +71,7 @@ public class BaseResponseUtil {
      * @return
      */
     public static BaseResponse fail(BaseResponseCode baseResponseCode) {
-        return new BaseResponse().setStatus(Constant.ReqResult.FAIL).setCode(baseResponseCode.getCode()).setMessage(baseResponseCode.getMessage());
+        return new BaseResponse().setStatus(Constant.FAIL).setCode(baseResponseCode.getCode()).setMessage(baseResponseCode.getMessage());
     }
 
     /**
@@ -80,7 +80,7 @@ public class BaseResponseUtil {
      * @return 响应实体
      */
     public static BaseResponse error(String message) {
-        return new BaseResponse().setStatus(Constant.ReqResult.ERROR).setCode(BaseResponseCode.INTERNAL_SERVER_ERROR.getCode()).setMessage(message);
+        return new BaseResponse().setStatus(Constant.ERROR).setCode(BaseResponseCode.INTERNAL_SERVER_ERROR.getCode()).setMessage(message);
     }
 }
 

@@ -2,7 +2,6 @@ package com.zhuzs.admin.config;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.context.annotation.Bean;
@@ -13,13 +12,11 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
 /**
-  * @Description
- *  LocalDateTime
-  * 重新定义Bean并重新实现逻辑
-  * 
-  * @Author zhu_zishuang
-  * @Date 2020-04-25 19:20
-  */
+ * @Description LocalDateTime
+ * 重新定义Bean并重新实现逻辑
+ * @Author zhu_zishuang
+ * @Date 2020-04-25 19:20
+ */
 @Configuration
 public class JacksonConfig {
     /**
@@ -34,14 +31,14 @@ public class JacksonConfig {
         javaTimeModule.addSerializer(LocalDateTime.class, new JsonSerializer<LocalDateTime>() {
             @Override
             public void serialize(LocalDateTime value, JsonGenerator gen, SerializerProvider serializers)
-                    throws IOException, JsonProcessingException {
+                    throws IOException {
                 gen.writeNumber(value.toInstant(ZoneOffset.of("+8")).toEpochMilli());
             }
         });
         javaTimeModule.addDeserializer(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
             @Override
             public LocalDateTime deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
-                    throws IOException, JsonProcessingException {
+                    throws IOException {
                 return LocalDateTime.ofEpochSecond(jsonParser.getLongValue() / 1000, 0, ZoneOffset.ofHours(8));
             }
         });

@@ -1,8 +1,8 @@
 package com.zhuzs.admin.advice;
 
+import com.zhuzs.admin.common.BaseResponse;
 import com.zhuzs.admin.common.BaseResponseCode;
 import com.zhuzs.admin.exception.ServiceException;
-import com.zhuzs.admin.common.BaseResponse;
 import com.zhuzs.admin.utils.BaseResponseUtil;
 import com.zhuzs.common.Constant;
 import org.slf4j.Logger;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolationException;
 import java.sql.SQLException;
@@ -26,11 +27,8 @@ public class CustomExceptionHandler {
     /***
      * 日志
      */
-    public final Logger logger;
+    public final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    {
-        this.logger = LoggerFactory.getLogger(this.getClass());
-    }
 
     /**
      * 数据校验异常 及 系统异常
@@ -40,19 +38,19 @@ public class CustomExceptionHandler {
     public BaseResponse handleBindException(Exception e, HttpServletRequest request) {
         if (e instanceof MethodArgumentNotValidException) {
             MethodArgumentNotValidException methodArgumentNotValidException = (MethodArgumentNotValidException) e;
-            logger.error(Constant.Character.LOG_INFO_PREFIX, methodArgumentNotValidException.getMessage());
-            return BaseResponseUtil.fail(BaseResponseCode.PARAMS_NOT_RIGHT.getCode(),methodArgumentNotValidException.getBindingResult().getAllErrors().get(0).getDefaultMessage());
+            logger.error(Constant.LOG_INFO_PREFIX, methodArgumentNotValidException.getMessage());
+            return BaseResponseUtil.fail(BaseResponseCode.PARAMS_NOT_RIGHT.getCode(), methodArgumentNotValidException.getBindingResult().getAllErrors().get(0).getDefaultMessage());
         }
         if (e instanceof BindException) {
             BindException bindException = (BindException) e;
-            logger.error(Constant.Character.LOG_INFO_PREFIX, bindException.getMessage());
-            return BaseResponseUtil.fail(BaseResponseCode.PARAMS_NOT_RIGHT.getCode(),bindException.getMessage());
+            logger.error(Constant.LOG_INFO_PREFIX, bindException.getMessage());
+            return BaseResponseUtil.fail(BaseResponseCode.PARAMS_NOT_RIGHT.getCode(), bindException.getMessage());
 
         }
         if (e instanceof ConstraintViolationException) {
             ConstraintViolationException constraintViolationException = (ConstraintViolationException) e;
-            logger.error(Constant.Character.LOG_INFO_PREFIX, constraintViolationException.getMessage());
-            return BaseResponseUtil.fail(BaseResponseCode.PARAMS_NOT_RIGHT.getCode(),constraintViolationException.getMessage());
+            logger.error(Constant.LOG_INFO_PREFIX, constraintViolationException.getMessage());
+            return BaseResponseUtil.fail(BaseResponseCode.PARAMS_NOT_RIGHT.getCode(), constraintViolationException.getMessage());
         }
         // SQL 操作异常
         if (e instanceof SQLException) {
@@ -65,7 +63,8 @@ public class CustomExceptionHandler {
         return BaseResponseUtil.error(e.getCause().toString());
     }
 
-    /**log.error("发生系统异常，异常信息：{}", exception.getMessage());
+    /**
+     * log.error("发生系统异常，异常信息：{}", exception.getMessage());
      * 业务异常
      */
     @ExceptionHandler(value = ServiceException.class)

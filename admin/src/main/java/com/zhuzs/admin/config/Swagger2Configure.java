@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * @date: 2020-06-12
  */
 @Configuration
-@EnableSwagger2 // 该注解开启Swagger2的自动配置
+@EnableSwagger2
 @ComponentScan("com.zhuzs.admin.controller")
 public class Swagger2Configure {
     @Bean
@@ -35,21 +35,29 @@ public class Swagger2Configure {
                 .apis(RequestHandlerSelectors.basePackage("com.zhuzs.admin.controller"))
                 //paths： 这里是控制哪些路径的api会被显示出来，比如下方的参数就是除了/user以外的其它路径都会生成api文档
                 .paths((String a) ->
-                        !a.equals("/user"))
+                        !"/user".equals(a))
                 .build();
     }
 
-    private ApiInfo apiInfo(){
+    private ApiInfo apiInfo() {
         Contact contact = new Contact("名字：name", "个人链接：http://xxx.xxx.com/", "邮箱：XXX");
         return new ApiInfo(
-                "标题内容", // 标题
-                "描述内容", // 描述
-                "版本内容：v1.0", // 版本
-                "链接：http://terms.service.url/", // 组织链接
-                contact, // 联系人信息
-                "许可：Apach 2.0 ", // 许可
-                "许可链接：XXX", // 许可连接
-                new ArrayList<>()// 扩展
+                // 标题
+                "标题内容",
+                // 描述
+                "描述内容",
+                // 版本
+                "版本内容：v1.0",
+                // 组织链接
+                "链接：http://terms.service.url/",
+                // 联系人信息
+                contact,
+                // 许可
+                "许可：Apach 2.0 ",
+                // 许可连接
+                "许可链接：XXX",
+                // 扩展
+                new ArrayList<>()
         );
     }
 }

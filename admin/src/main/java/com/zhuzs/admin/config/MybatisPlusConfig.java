@@ -34,7 +34,7 @@ public class MybatisPlusConfig {
         sqlParserList.add(new BlockAttackSqlParser());
         paginationInterceptor.setSqlParserList(sqlParserList);
         //导出数据时 500条限制问题
-        paginationInterceptor.setLimit(Constant.Number.MAX_PAGE_SIZE);
+        paginationInterceptor.setLimit(Constant.MAX_PAGE_SIZE);
         return paginationInterceptor;
     }
 

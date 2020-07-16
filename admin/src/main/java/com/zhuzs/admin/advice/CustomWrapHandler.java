@@ -34,7 +34,7 @@ public class CustomWrapHandler<T> implements ResponseBodyAdvice<T> {
         /**
          * 若是swagger返回对象，则直接返回
          */
-        if (returnType.getGenericParameterType().toString().startsWith(ResponseEntity.class.toString().split(Constant.Character.SPLIT_CLASS)[1])) {
+        if (returnType.getGenericParameterType().toString().startsWith(ResponseEntity.class.toString().split(Constant.SPLIT_CLASS)[1])) {
             return body;
         }
 

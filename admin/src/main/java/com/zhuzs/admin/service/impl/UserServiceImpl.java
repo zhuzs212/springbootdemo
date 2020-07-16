@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public BaseResponseCode saveUser(UserDto userDto) {
-        return userMapper.saveUser(userDto) == Constant.Number.ONE ? BaseResponseCode.SAVE_SUCCESS : BaseResponseCode.OPERATION_FAILURE;
+        return userMapper.saveUser(userDto) == Constant.ONE ? BaseResponseCode.SAVE_SUCCESS : BaseResponseCode.OPERATION_FAILURE;
     }
 
     @Override
