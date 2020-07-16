@@ -19,6 +19,8 @@ public interface Constant {
     }
 
 
+
+
     /**
      * 常用数值
      */
@@ -96,6 +98,7 @@ public interface Constant {
         String ON = "ON";
         String OFF = "OFF";
         String TIP_FLAG = "tipFlag";
+        String LOG_INFO_PREFIX = "登录异常，异常信息：{}";
     }
 
 
