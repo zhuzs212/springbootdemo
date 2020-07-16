@@ -9,7 +9,7 @@ import lombok.experimental.Accessors;
  * @date: 2020-04-22 14:29
  */
 @Accessors(chain = true)
-public enum BaseResponseCode {
+public enum BaseResponseCode implements ExceptionInfo {
     /* ============================ 通用错误码 ========================== **/
     /**
      * 禁止访问 303

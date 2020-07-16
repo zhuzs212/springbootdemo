@@ -1,6 +1,7 @@
 package com.zhuzs.admin.exception;
 
 import com.zhuzs.admin.common.BaseResponseCode;
+import com.zhuzs.admin.common.ExceptionInfo;
 
 /**
  * @description：业务异常累(业务处理时手动抛出异常)
@@ -15,14 +16,14 @@ public class ServiceException extends RuntimeException {
     public final String message;
     public Object data;
 
-    public ServiceException(String message, BaseResponseCode resultCode) {
+    public ServiceException(String message, ExceptionInfo exceptionInfo) {
         super(message);
-        this.code = resultCode.code;
+        this.code = exceptionInfo.getCode();
         this.message = message;
     }
 
-    public ServiceException(BaseResponseCode resultCode) {
-        this(resultCode.message, resultCode);
+    public ServiceException(ExceptionInfo exceptionInfo) {
+        this(exceptionInfo.getMessage(), exceptionInfo);
     }
 
     /**

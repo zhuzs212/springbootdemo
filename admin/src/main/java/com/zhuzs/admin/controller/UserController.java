@@ -1,6 +1,7 @@
 package com.zhuzs.admin.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.zhuzs.admin.common.BaseResponseCode;
 import com.zhuzs.admin.common.validated.Insert;
 import com.zhuzs.admin.common.validated.Update;
 import com.zhuzs.admin.entity.dto.UserDto;
@@ -38,7 +39,7 @@ public class UserController {
      * @return
      */
     @PostMapping("/saveUser")
-    public Enum saveUser(@Validated({Insert.class, Update.class}) @RequestBody UserDto userDto) {
+    public BaseResponseCode saveUser(@Validated({Insert.class, Update.class}) @RequestBody UserDto userDto) {
         return userService.saveUser(userDto);
     }
 

@@ -1,6 +1,7 @@
 package com.zhuzs.admin.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.zhuzs.admin.common.BaseResponseCode;
 import com.zhuzs.admin.entity.dto.UserDto;
 import com.zhuzs.admin.entity.vo.UserVo;
 import com.zhuzs.admin.entity.CodeValue;
@@ -18,7 +19,7 @@ public interface UserService {
      * @param userDto
      * @return
      */
-    Enum saveUser(UserDto userDto);
+    BaseResponseCode saveUser(UserDto userDto);
 
     /**
      * 查询单个用户

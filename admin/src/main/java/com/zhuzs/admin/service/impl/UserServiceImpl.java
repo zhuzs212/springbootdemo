@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public Enum saveUser(UserDto userDto) {
+    public BaseResponseCode saveUser(UserDto userDto) {
         return userMapper.saveUser(userDto) == Constant.Number.ONE ? BaseResponseCode.SAVE_SUCCESS : BaseResponseCode.OPERATION_FAILURE;
     }
 
@@ -61,7 +61,6 @@ public class UserServiceImpl implements UserService {
         String[] data = jsonData.split(",");
         for(String str:data){
             String[] keyValues = str.split(":");
-            System.out.println("value1:"+keyValues[0].split("'")[1]+", "+"value2:"+keyValues[1].split("'")[1]);
             CodeValue codeValue = new CodeValue();
             codeValue.setSysCode(keyValues[0].split("'")[1]);
             codeValue.setDefaultValue(keyValues[1].split("'")[1]);

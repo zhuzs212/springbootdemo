@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * @Description TODO
+ * @Description demo 入口类
  * @Author zhu_zishuang
  * @Date 2020-06-13
  */

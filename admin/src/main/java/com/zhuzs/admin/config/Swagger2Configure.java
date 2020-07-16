@@ -13,7 +13,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.util.ArrayList;
 
 /**
- * @description：TODO
+ * @description：swagger配置类
  * @author: zhu_zishuang
  * @date: 2020-06-12
  */
