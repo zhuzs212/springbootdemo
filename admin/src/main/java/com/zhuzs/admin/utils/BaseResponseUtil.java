@@ -9,7 +9,7 @@ import com.zhuzs.common.Constant;
  * @author: zhu_zishuang
  * @date: 2020-04-25 11:09
  */
-public class BaseResponseUtil {
+public final class BaseResponseUtil {
 
     /**
      * 成功编码
