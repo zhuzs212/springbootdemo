@@ -29,7 +29,6 @@ public class CustomExceptionHandler {
      */
     public final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-
     /**
      * 数据校验异常 及 系统异常
      */

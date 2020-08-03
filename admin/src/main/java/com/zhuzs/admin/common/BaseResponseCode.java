@@ -5,6 +5,7 @@ import lombok.experimental.Accessors;
 /**
  * @description：结果类型
  *
+ *
  * @author: zhu_zishuang
  * @date: 2020-04-22 14:29
  */

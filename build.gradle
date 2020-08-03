@@ -48,12 +48,8 @@ subprojects {
         compile 'com.baomidou:mybatis-plus-boot-starter:3.1.1'
         compile 'org.springframework.boot:spring-boot-starter-data-redis:2.1.2.RELEASE'
         compile 'org.springframework.boot:spring-boot-starter-cache:2.2.2.RELEASE'
-        // https://mvnrepository.com/artifact/io.springfox/springfox-swagger2
         compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
-        // https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui
         compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
-//        // https://mvnrepository.com/artifact/io.swagger.core.v3/swagger-annotations
-//        compile group: 'io.swagger.core.v3', name: 'swagger-annotations', version: '2.1.2'
 
     }
 }
