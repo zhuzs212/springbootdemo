@@ -8,6 +8,8 @@ import com.zhuzs.admin.entity.dto.UserDto;
 import com.zhuzs.admin.entity.vo.UserVo;
 import com.zhuzs.admin.service.UserService;
 import com.zhuzs.admin.entity.CodeValue;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +26,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = "user")
+@Api(tags = "用户管理")
 public class UserController {
 
     /**
@@ -60,6 +63,7 @@ public class UserController {
      * @return
      */
     @PostMapping("/queryUsers")
+    @ApiOperation("获取用户列表")
     public Page<UserVo> queryUsers(@RequestBody UserDto userDto) {
         return userService.listUser(userDto);
     }

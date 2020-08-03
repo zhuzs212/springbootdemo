@@ -1,6 +1,7 @@
 package com.zhuzs.admin.entity;
 
 import com.zhuzs.admin.common.validated.Insert;
+import com.zhuzs.admin.common.validated.Select;
 import com.zhuzs.admin.common.validated.Update;
 import lombok.Data;
 
@@ -25,7 +26,7 @@ public class User {
     /**
      * 姓名
      */
-    @NotEmpty(message = "用户名不能为空！", groups = {Update.class})
+    @NotEmpty(message = "用户名不能为空！", groups = {Update.class, Select.class})
     private String name;
 
     /**
