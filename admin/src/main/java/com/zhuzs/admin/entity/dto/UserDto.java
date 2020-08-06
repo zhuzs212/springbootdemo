@@ -19,7 +19,7 @@ import lombok.ToString;
 @ToString
 @ApiModel("用户实体类")
 public class UserDto extends User {
-
+    private static final long serialVersionUID = -6716772084974704679L;
     /**
      * JSON 数据
      */

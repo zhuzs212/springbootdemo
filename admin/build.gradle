@@ -14,4 +14,5 @@ dependencies {
         - 隐藏对外不必要的接口
      */
     implementation project(':common')
+//    compile rootProject.ext.dependencies["spring-boot-starter-data-redis"]
 }

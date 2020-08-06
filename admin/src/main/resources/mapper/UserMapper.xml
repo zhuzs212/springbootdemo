@@ -13,12 +13,10 @@
     <!--  新增用户  -->
     <insert id="saveUser">
         insert into user(
-            id,
             name,
             age,
             email
         )values(
-            null,
             #{userDto.name},
             #{userDto.age},
             #{userDto.email}

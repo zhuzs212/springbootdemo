@@ -10,6 +10,8 @@ import com.zhuzs.admin.mapper.UserMapper;
 import com.zhuzs.admin.service.UserService;
 import com.zhuzs.common.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -31,6 +33,7 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
+    @CacheEvict(cacheNames = "product", key = "123")
     public BaseResponseCode saveUser(UserDto userDto) {
         return userMapper.saveUser(userDto) == Constant.ONE ? BaseResponseCode.SAVE_SUCCESS : BaseResponseCode.OPERATION_FAILURE;
     }
@@ -44,6 +47,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Cacheable(cacheNames = "product", key = "123")
     public Page<UserVo> listUser(UserDto userDto) {
         Page<UserVo> page = userDto.getPage();
         return userMapper.listUser(page, userDto);

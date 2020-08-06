@@ -7,6 +7,7 @@ import lombok.Data;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 
 /**
  * @title：User
@@ -16,8 +17,8 @@ import javax.validation.constraints.NotEmpty;
  * @date: 2020-04-21 10:33
  */
 @Data
-public class User {
-
+public class User implements Serializable {
+    private static final long serialVersionUID = 3041475426752401035L;
     /**
      * 主键ID
      */

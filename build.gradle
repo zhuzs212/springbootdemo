@@ -16,6 +16,9 @@ buildscript {
     }
 }
 
+// 引用依赖配置文件
+apply from: "config.gradle"
+
 // 所有子项目的通用配置
 subprojects {
     // 应用插件
