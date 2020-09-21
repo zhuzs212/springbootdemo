@@ -7,6 +7,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -325,7 +326,7 @@ public class RedisUtil {
             return redisTemplate.opsForSet().members(key);
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return Collections.emptySet();
         }
     }
 
@@ -428,7 +429,7 @@ public class RedisUtil {
             return redisTemplate.opsForList().range(key, start, end);
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return Collections.emptyList();
         }
     }
 
@@ -581,7 +582,7 @@ public class RedisUtil {
      * @param pattern
      * @return
      */
-    public Set keys(String pattern) {
+    public Set<String> keys(String pattern) {
         return redisTemplate.keys(pattern);
     }
 

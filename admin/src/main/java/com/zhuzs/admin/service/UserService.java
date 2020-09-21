@@ -1,43 +1,38 @@
 package com.zhuzs.admin.service;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zhuzs.admin.common.BaseResponseCode;
-import com.zhuzs.admin.entity.dto.UserDto;
-import com.zhuzs.admin.entity.vo.UserVo;
-import com.zhuzs.admin.entity.CodeValue;
-
-import java.util.List;
+import com.github.pagehelper.PageSerializable;
+import com.zhuzs.admin.common.OperationEnum;
+import com.zhuzs.admin.common.PageRequest;
+import com.zhuzs.admin.entity.domain.UserDO;
+import com.zhuzs.admin.entity.request.QueryUserRequest;
+import com.zhuzs.admin.entity.request.SaveUserRequest;
+import org.apache.ibatis.annotations.Param;
 
 /**
- * @description：user service接口
- * @author: zhu_zishuang
- * @date: 2020-04-22 15:27
- */
+  * 用户接口
+  *
+  * @Author zhu_zishuang
+  * @Date 2020-09-17
+  */
 public interface UserService {
     /**
      * 新增用户
-     * @param userDto
+     * @param userDto 新增请求参数
      * @return
      */
-    BaseResponseCode saveUser(UserDto userDto);
+    OperationEnum saveUser(SaveUserRequest userDto);
 
     /**
      * 查询单个用户
      * @return
      */
-    UserVo getUser();
+    UserDO getUser();
 
     /**
-     * 查询用户列表 分页
-     * @param userDto
-     * @return
+     * 分页查询 用户列表
+     * @param pageRequest 分页请求参数
+     * @return 用户列表
      */
-    Page<UserVo> listUser(UserDto userDto);
+    PageSerializable<UserDO> listUser(@Param("pageRequest") PageRequest<QueryUserRequest> pageRequest);
 
-    /**
-     * 用户基本配置
-     * @param userDto
-     * @return
-     */
-    List<CodeValue> config(UserDto userDto);
 }

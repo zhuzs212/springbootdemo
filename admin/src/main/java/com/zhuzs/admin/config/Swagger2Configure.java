@@ -4,13 +4,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
-import java.util.ArrayList;
 
 /**
  * @description：swagger配置类
@@ -39,26 +35,5 @@ public class Swagger2Configure {
                 .build();
     }
 
-//    private ApiInfo apiInfo() {
-//        Contact contact = new Contact("名字：name", "个人链接：http://xxx.xxx.com/", "邮箱：XXX");
-//        return new ApiInfo(
-//                // 标题
-//                "标题内容",
-//                // 描述
-//                "描述内容",
-//                // 版本
-//                "版本内容：v1.0",
-//                // 组织链接
-//                "链接：http://terms.service.url/",
-//                // 联系人信息
-//                contact,
-//                // 许可
-//                "许可：Apach 2.0 ",
-//                // 许可连接
-//                "许可链接：XXX",
-//                // 扩展
-//                new ArrayList<>()
-//        );
-//    }
 }
 

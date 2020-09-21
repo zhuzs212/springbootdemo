@@ -1,7 +1,9 @@
 package com.zhuzs.admin.utils;
 
 import com.zhuzs.admin.common.BaseResponse;
-import com.zhuzs.admin.common.BaseResponseCode;
+import com.zhuzs.admin.common.OperationEnum;
+import com.zhuzs.admin.common.SysExceptionEnum;
+import com.zhuzs.admin.service.constant.ExceptionConstantEnum;
 import com.zhuzs.common.Constant;
 
 /**
@@ -48,11 +50,11 @@ public final class BaseResponseUtil {
 
     /**
      * 包裹响应对象，此方法适合 增、删、改 操作有数据实体场景下调用
-     * @param baseResponseCode
+     * @param operationEnum
      * @return
      */
-    public static BaseResponse success(BaseResponseCode baseResponseCode) {
-        return success().setCode(baseResponseCode.getCode()).setMessage(baseResponseCode.getMessage());
+    public static BaseResponse success(OperationEnum operationEnum) {
+        return success().setCode(operationEnum.getCode()).setMessage(operationEnum.getMessage());
     }
 
     /**
@@ -70,17 +72,17 @@ public final class BaseResponseUtil {
      * @param baseResponseCode
      * @return
      */
-    public static BaseResponse fail(BaseResponseCode baseResponseCode) {
+    public static BaseResponse fail(ExceptionConstantEnum baseResponseCode) {
         return new BaseResponse().setStatus(Constant.FAIL).setCode(baseResponseCode.getCode()).setMessage(baseResponseCode.getMessage());
     }
 
     /**
      * 包裹响应对象，系统异常 场景下调用
-     * @param message
+     * @param sysExceptionEnum
      * @return 响应实体
      */
-    public static BaseResponse error(String message) {
-        return new BaseResponse().setStatus(Constant.ERROR).setCode(BaseResponseCode.INTERNAL_SERVER_ERROR.getCode()).setMessage(message);
+    public static BaseResponse error(SysExceptionEnum sysExceptionEnum) {
+        return new BaseResponse().setStatus(Constant.ERROR).setCode(sysExceptionEnum.getCode()).setMessage(sysExceptionEnum.getMessage());
     }
 }
 

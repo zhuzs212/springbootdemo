@@ -18,7 +18,7 @@
 	</appender>
 
 	<!-- project default level -->
-	<logger name="com.njwd" level="DEBUG" />
+	<logger name="com.zhuzs" level="DEBUG" />
 
 	<!--log4jdbc -->
 	<logger name="jdbc.sqltiming" level="DEBUG"/>

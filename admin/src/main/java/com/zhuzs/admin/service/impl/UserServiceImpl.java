@@ -1,28 +1,26 @@
 package com.zhuzs.admin.service.impl;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zhuzs.admin.common.BaseResponseCode;
-import com.zhuzs.admin.entity.CodeValue;
-import com.zhuzs.admin.entity.dto.UserDto;
-import com.zhuzs.admin.entity.vo.UserVo;
+import com.github.pagehelper.PageSerializable;
+import com.github.pagehelper.page.PageMethod;
+import com.zhuzs.admin.common.OperationEnum;
+import com.zhuzs.admin.common.PageRequest;
+import com.zhuzs.admin.entity.domain.UserDO;
+import com.zhuzs.admin.entity.request.QueryUserRequest;
+import com.zhuzs.admin.entity.request.SaveUserRequest;
 import com.zhuzs.admin.exception.ServiceException;
 import com.zhuzs.admin.mapper.UserMapper;
 import com.zhuzs.admin.service.UserService;
-import com.zhuzs.common.Constant;
+import com.zhuzs.admin.service.constant.ExceptionConstantEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
 /**
- * @description：user service实现
- * @author: zhu_zishuang
- * @date: 2020-04-22 15:29
- */
+  * 用户接口 实现
+  *
+  * @Author zhu_zishuang
+  * @Date 2020-09-17
+  */
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -34,44 +32,24 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @CacheEvict(cacheNames = "product", key = "123")
-    public BaseResponseCode saveUser(UserDto userDto) {
-        return userMapper.saveUser(userDto) == Constant.ONE ? BaseResponseCode.SAVE_SUCCESS : BaseResponseCode.OPERATION_FAILURE;
+    public OperationEnum saveUser(SaveUserRequest userDto) {
+        userMapper.saveUser(userDto);
+        return OperationEnum.SAVE_SUCCESS;
     }
 
     @Override
-    public UserVo getUser() {
+    public UserDO getUser() {
         if (true) {
-            throw new ServiceException(BaseResponseCode.USER_NOT_EXIT_EXCEPTION);
+            throw new ServiceException(ExceptionConstantEnum.USER_NOT_EXIT_EXCEPTION);
         }
         return null;
     }
 
     @Override
-    @Cacheable(cacheNames = "product", key = "123")
-    public Page<UserVo> listUser(UserDto userDto) {
-        Page<UserVo> page = userDto.getPage();
-        return userMapper.listUser(page, userDto);
-    }
-
-    @Override
-    public List<CodeValue> config(UserDto userDto) {
-
-        List<CodeValue> list = new ArrayList<>();
-
-        // 数据解析
-        String jsonData = userDto.getJsonData();
-        jsonData = jsonData.substring(2,jsonData.length()-2);
-
-        String[] data = jsonData.split(",");
-        for(String str:data){
-            String[] keyValues = str.split(":");
-            CodeValue codeValue = new CodeValue();
-            codeValue.setSysCode(keyValues[0].split("'")[1]);
-            codeValue.setDefaultValue(keyValues[1].split("'")[1]);
-            list.add(codeValue);
-
-        }
-        return list;
+//    @Cacheable(cacheNames = "product", key = "123")
+    public PageSerializable<UserDO> listUser(PageRequest<QueryUserRequest> pageRequest) {
+        PageMethod.offsetPage(pageRequest.getCurrent(),pageRequest.getSize());
+        return new PageSerializable(userMapper.listUser(pageRequest.getData()));
     }
 }
 

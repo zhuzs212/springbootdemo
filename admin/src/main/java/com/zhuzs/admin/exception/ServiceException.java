@@ -1,9 +1,9 @@
 package com.zhuzs.admin.exception;
 
-import com.zhuzs.admin.common.ExceptionInfo;
+import com.zhuzs.admin.common.ExceptionInterface;
 
 /**
- * @description：业务异常累(业务处理时手动抛出异常)
+ * 业务异常累(业务处理时手动抛出异常)
  *
  * @author: zhu_zishuang
  * @date: 2020-04-22 15:35
@@ -20,7 +20,7 @@ public class ServiceException extends RuntimeException {
      *
      * @param exceptionInfo
      */
-    public ServiceException(ExceptionInfo exceptionInfo) {
+    public ServiceException(ExceptionInterface exceptionInfo) {
         super(exceptionInfo.getMessage());
         this.code = exceptionInfo.getCode();
     }

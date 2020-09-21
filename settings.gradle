@@ -3,3 +3,5 @@
 rootProject.name = 'springbootdemo'
 /* 引入子模块 */
 include 'common','admin'
+include 'PubUtils'
+

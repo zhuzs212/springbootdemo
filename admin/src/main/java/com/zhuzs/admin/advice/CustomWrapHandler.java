@@ -1,13 +1,11 @@
 package com.zhuzs.admin.advice;
 
 import com.zhuzs.admin.common.BaseResponse;
-import com.zhuzs.admin.common.BaseResponseCode;
+import com.zhuzs.admin.common.OperationEnum;
 import com.zhuzs.admin.utils.BaseResponseUtil;
-import com.zhuzs.common.Constant;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.http.server.ServerHttpRequest;
@@ -20,8 +18,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  * @author: zhu_zishuang
  * @date: 2020-04-24 14:01
  */
-@ControllerAdvice
 @Slf4j
+@ControllerAdvice(basePackages = "com.zhuzs.admin.controller")
 public class CustomWrapHandler<T> implements ResponseBodyAdvice<T> {
 
     @Override
@@ -31,13 +29,6 @@ public class CustomWrapHandler<T> implements ResponseBodyAdvice<T> {
 
     @Override
     public T beforeBodyWrite(T body, MethodParameter returnType, MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
-        /**
-         * 若是swagger返回对象，则直接返回
-         */
-        if (returnType.getGenericParameterType().toString().startsWith(ResponseEntity.class.toString().split(Constant.SPLIT_CLASS)[1])) {
-            return body;
-        }
-
         /**
          * 系统异常、业务异常 等信息
          */
@@ -49,12 +40,11 @@ public class CustomWrapHandler<T> implements ResponseBodyAdvice<T> {
         /**
          * 增、删、改操作返回的状态
          */
-        if (body.getClass().equals(BaseResponseCode.class)) {
+        if (body.getClass().equals(OperationEnum.class)) {
             log.error("接口: {} , 增删改方法！" + request.getURI());
-            return (T) BaseResponseUtil.success((BaseResponseCode) body);
+            return (T) BaseResponseUtil.success((OperationEnum) body);
         }
 
         return (T) BaseResponseUtil.success(body);
     }
 }
-

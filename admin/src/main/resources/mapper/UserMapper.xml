@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//http://mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zhuzs.admin.mapper.UserMapper">
-    <resultMap id="BASE_MAP" type="com.zhuzs.admin.entity.vo.UserVo">
+    <resultMap id="BASE_MAP" type="com.zhuzs.admin.entity.domain.UserDO">
 
     </resultMap>
     <sql id="BASE_COLUMN">
@@ -24,12 +24,12 @@
     </insert>
 
     <!--  查询用户列表 分页  -->
-    <select id="listUser" resultType="com.zhuzs.admin.entity.vo.UserVo">
+    <select id="listUser" resultType="com.zhuzs.admin.entity.domain.UserDO">
         select
         <include refid="BASE_COLUMN"/>
         from user
         <where>
-            <if test="userDto.name != null and userDto.name != ''">
+            <if test="queryUserRequest.name != null and queryUserRequest.name != ''">
                 -- 模糊查询，前置%则不走索引，会全表扫描
                 name like CONCAT(#{userDto.name}, '%')
             </if>

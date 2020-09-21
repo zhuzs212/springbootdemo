@@ -1,32 +1,33 @@
 package com.zhuzs.admin.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zhuzs.admin.entity.User;
-import com.zhuzs.admin.entity.dto.UserDto;
-import com.zhuzs.admin.entity.vo.UserVo;
+import com.zhuzs.admin.entity.domain.UserDO;
+import com.zhuzs.admin.entity.request.QueryUserRequest;
+import com.zhuzs.admin.entity.request.SaveUserRequest;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @description：
  * @author: zhu_zishuang
  * @date: 2020-04-26 08:29
  */
-public interface UserMapper extends BaseMapper<User> {
+public interface UserMapper {
 
     /**
-     *  新增用户
+     * 新增用户
+     *
      * @param userDto
      * @return
      */
-    int saveUser(@Param("userDto") UserDto userDto);
+    int saveUser(@Param("userDto") SaveUserRequest userDto);
 
     /**
-     * 获取用户列表
-     * @param userDto
-     * @param page
-     * @return
+     * 查询用户列表
+     *
+     * @param queryUserRequest
+     * @return 用户列表
      */
-    Page<UserVo> listUser(@Param("page") Page<UserVo> page, @Param("userDto") UserDto userDto);
+    List<UserDO> listUser(@Param("queryUserRequest") QueryUserRequest queryUserRequest);
 }
 
