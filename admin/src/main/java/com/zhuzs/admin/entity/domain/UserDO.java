@@ -2,23 +2,20 @@ package com.zhuzs.admin.entity.domain;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.ToString;
 
 /**
-  * 用户 映射实体
-  *
-  * @Author zhu_zishuang
-  * @Date 2020-09-17
-  */
+ * 用户 映射实体
+ *
+ * @Author zhu_zishuang
+ * @Date 2020-09-17
+ */
 @Data
-@ToString(callSuper = true)
 public class UserDO {
-
     /**
      * 主键ID
      */
     @ApiModelProperty(value = "id")
-    private Long id;
+    private Integer id;
 
     /**
      * 姓名
@@ -27,15 +24,13 @@ public class UserDO {
     private String name;
 
     /**
-     * 年龄
+     * 密码
      */
-    @ApiModelProperty(value = "年龄")
-    private Integer age;
+    private String password;
 
     /**
-     * 邮箱
+     * 角色
      */
-    @ApiModelProperty(value = "邮箱")
-    private String email;
+    private RoleDO roleDO;
 }
 

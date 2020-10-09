@@ -1,26 +1,24 @@
 package com.zhuzs.admin.controller;
 
-import com.github.pagehelper.PageSerializable;
-import com.zhuzs.admin.common.OperationEnum;
-import com.zhuzs.admin.common.PageRequest;
 import com.zhuzs.admin.entity.domain.UserDO;
-import com.zhuzs.admin.entity.request.QueryUserRequest;
-import com.zhuzs.admin.entity.request.SaveUserRequest;
 import com.zhuzs.admin.service.UserService;
+import com.zhuzs.admin.utils.UserUtils;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 /**
-  * User 控制器
-  *
-  * @Author zhu_zishuang
-  * @Date 2020-09-16
-  */
+ * User 控制器
+ *
+ * @Author zhu_zishuang
+ * @Date 2020-09-16
+ */
 @RestController
 @RequestMapping(value = "user")
 @Api(tags = "用户管理")
@@ -33,36 +31,51 @@ public class UserController {
     private UserService userService;
 
     /**
-     * 新增用户
-     *
-     * @param userRequest 新增请求参数
-     * @return
-     */
-    @PostMapping("/saveUser")
-    @ApiOperation("用户新增接口")
-    public OperationEnum saveUser(@RequestBody SaveUserRequest userRequest) {
-        return userService.saveUser(userRequest);
-    }
-
-    /**
      * 查询单个用户
      *
      * @return
      */
     @PostMapping("/queryUser")
-    public UserDO queryUser() {
-        return userService.getUser();
+    public UserDO queryUser(String userName) {
+        UserDO operator = UserUtils.getUserVo();
+        return userService.getUser(userName);
     }
 
-    /**
-     * 获取用户列表
-     *
-     * @param pageRequest 分页请求参数
-     * @return 用户列表
-     */
-    @PostMapping("/queryUsers")
-    @ApiOperation("获取用户列表")
-    public PageSerializable<UserDO> queryUsers(@RequestBody PageRequest<QueryUserRequest> pageRequest) {
-        return userService.listUser(pageRequest);
+    @GetMapping("/{url}")
+    public String redirect(@PathVariable("url") String url) {
+        return url;
+    }
+
+    @PostMapping("/login")
+    public String login(String userName, String password, Model model) {
+        // 获取 subject 认证主体（这里也就是现在登录的用户）
+        Subject subject = SecurityUtils.getSubject();
+        // 创建出一个 Token 内容本质基于前台的用户名和密码（不一定正确）
+        UsernamePasswordToken token = new UsernamePasswordToken(userName, password);
+
+        // 由于是根据name参数获取的，我这里封装了一下
+        UserDO user = new UserDO();
+        user.setName(userName);
+        user.setPassword(password);
+        try {
+            // 认证开始，这里会跳转到自定义的 UserRealm 中
+            subject.login(token);
+            UserDO userDO = (UserDO) subject.getPrincipal();
+            subject.getSession().setAttribute("userDO", userDO);
+            return "index";
+        } catch (UnknownAccountException e) {
+            model.addAttribute("msg", "用户名错误");
+            return "login";
+        } catch (IncorrectCredentialsException e) {
+            model.addAttribute("msg", "密码错误");
+            return "login";
+        }
+    }
+
+    @GetMapping("/logout")
+    public String logout() {
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        return "login";
     }
 }

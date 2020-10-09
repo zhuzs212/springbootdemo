@@ -1,9 +1,9 @@
 package com.zhuzs.admin.advice;
 
 import com.zhuzs.admin.common.BaseResponse;
+import com.zhuzs.admin.common.ExceptionConstantEnum;
 import com.zhuzs.admin.common.SysExceptionEnum;
 import com.zhuzs.admin.exception.ServiceException;
-import com.zhuzs.admin.service.constant.ExceptionConstantEnum;
 import com.zhuzs.admin.utils.BaseResponseUtil;
 import com.zhuzs.common.Constant;
 import lombok.extern.slf4j.Slf4j;

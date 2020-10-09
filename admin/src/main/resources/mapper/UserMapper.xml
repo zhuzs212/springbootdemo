@@ -1,38 +1,40 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//http://mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zhuzs.admin.mapper.UserMapper">
-    <resultMap id="BASE_MAP" type="com.zhuzs.admin.entity.domain.UserDO">
-
+    <!-- 定义封装 User和 role 的 resultMap -->
+    <resultMap id="userRoleMap" type="com.zhuzs.admin.entity.domain.UserDO">
+        <id property="id" column="id"/>
+        <result property="name" column="name"></result>
+        <result property="password" column="password"></result>
+        <!-- 配置封装 UserPojo 的内容 -->
+        <association property="roleDO" javaType="com.zhuzs.admin.entity.domain.RoleDO">
+            <id property="id" column="id"></id>
+            <result property="roleName" column="role_name"></result>
+        </association>
     </resultMap>
-    <sql id="BASE_COLUMN">
-        id,
-        name,
-        age,
-        email
-    </sql>
-    <!--  新增用户  -->
-    <insert id="saveUser">
-        insert into user(
-            name,
-            age,
-            email
-        )values(
-            #{userDto.name},
-            #{userDto.age},
-            #{userDto.email}
-        )
-    </insert>
 
-    <!--  查询用户列表 分页  -->
-    <select id="listUser" resultType="com.zhuzs.admin.entity.domain.UserDO">
-        select
-        <include refid="BASE_COLUMN"/>
-        from user
-        <where>
-            <if test="queryUserRequest.name != null and queryUserRequest.name != ''">
-                -- 模糊查询，前置%则不走索引，会全表扫描
-                name like CONCAT(#{userDto.name}, '%')
-            </if>
-        </where>
+    <select id="getUser" resultMap="userRoleMap">
+        SELECT u.*,r.role_name
+        FROM `user` u join `role` r ON u.role_id = r.id
+        WHERE u.name = #{userName}
+    </select>
+
+    <!-- 定义封装 permission 和 role 的 resultMap -->
+    <resultMap id="permissionRoleMap" type="com.zhuzs.admin.entity.domain.PermissionDO">
+        <id property="id" column="id"/>
+        <result property="permissionName" column="permission_name"></result>
+        <!-- 配置封装 Role 的内容 -->
+        <association property="roleDO" javaType="com.zhuzs.admin.entity.domain.RoleDO">
+            <id property="id" column="id"></id>
+            <result property="roleName" column="role_name"></result>
+        </association>
+    </resultMap>
+
+    <select id="getPermission" resultMap="permissionRoleMap">
+        SELECT
+            p.* ,r.role_name
+        FROM `user` u JOIN `role` r ON u.role_id = r.id
+        JOIN `permission` p ON r.id = p.role_id
+        WHERE u.name = #{userName}
     </select>
 </mapper>

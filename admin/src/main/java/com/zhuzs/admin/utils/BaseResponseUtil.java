@@ -1,9 +1,9 @@
 package com.zhuzs.admin.utils;
 
 import com.zhuzs.admin.common.BaseResponse;
+import com.zhuzs.admin.common.ExceptionConstantEnum;
 import com.zhuzs.admin.common.OperationEnum;
 import com.zhuzs.admin.common.SysExceptionEnum;
-import com.zhuzs.admin.service.constant.ExceptionConstantEnum;
 import com.zhuzs.common.Constant;
 
 /**

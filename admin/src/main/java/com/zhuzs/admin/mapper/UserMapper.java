@@ -1,11 +1,7 @@
 package com.zhuzs.admin.mapper;
 
+import com.zhuzs.admin.entity.domain.PermissionDO;
 import com.zhuzs.admin.entity.domain.UserDO;
-import com.zhuzs.admin.entity.request.QueryUserRequest;
-import com.zhuzs.admin.entity.request.SaveUserRequest;
-import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
 
 /**
  * @description：
@@ -15,19 +11,15 @@ import java.util.List;
 public interface UserMapper {
 
     /**
-     * 新增用户
-     *
-     * @param userDto
+     * @param userName
      * @return
      */
-    int saveUser(@Param("userDto") SaveUserRequest userDto);
+    UserDO getUser(String userName);
 
     /**
-     * 查询用户列表
-     *
-     * @param queryUserRequest
-     * @return 用户列表
+     * @param userName
+     * @return
      */
-    List<UserDO> listUser(@Param("queryUserRequest") QueryUserRequest queryUserRequest);
+    PermissionDO getPermission(String userName);
 }
 
