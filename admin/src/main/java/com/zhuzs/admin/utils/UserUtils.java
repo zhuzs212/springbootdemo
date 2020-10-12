@@ -20,7 +20,7 @@ public class UserUtils {
      * 获取UserInfo
      */
     @NotNull
-    public static UserDO getUserVo() {
+    public static UserDO getUserDO() {
         // 从shiro中获取
         PrincipalCollection principals = SecurityUtils.getSubject().getPrincipals();
         if (principals != null) {

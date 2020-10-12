@@ -9,7 +9,7 @@ public final class Constant {
     /**
      * 构造器私有化
      */
-    private Constant(){
+    private Constant() {
 
     }
 
@@ -41,4 +41,8 @@ public final class Constant {
     public static final Integer YES_INT = 1;
 
 
+    /**
+     * 平台管理员
+     */
+    public static final String ADMIN = "admin";
 }

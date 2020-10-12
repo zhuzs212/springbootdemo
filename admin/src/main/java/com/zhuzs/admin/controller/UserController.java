@@ -2,7 +2,6 @@ package com.zhuzs.admin.controller;
 
 import com.zhuzs.admin.entity.domain.UserDO;
 import com.zhuzs.admin.service.UserService;
-import com.zhuzs.admin.utils.UserUtils;
 import io.swagger.annotations.Api;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -30,6 +29,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @RequestMapping("/hello")
+    @ResponseBody
+    public String hello() {
+        return "hello";
+    }
+
     /**
      * 查询单个用户
      *
@@ -37,7 +42,7 @@ public class UserController {
      */
     @PostMapping("/queryUser")
     public UserDO queryUser(String userName) {
-        UserDO operator = UserUtils.getUserVo();
+//        ShiroUtils.checkRole(Constant.ADMIN);
         return userService.getUser(userName);
     }
 

@@ -18,11 +18,11 @@ import javax.validation.ConstraintViolationException;
 import java.sql.SQLException;
 
 /**
-  * 自定义异常处理器
-  *
-  * @Author zhu_zishuang
-  * @Date 2020-09-17
-  */
+ * 自定义异常处理器
+ *
+ * @Author zhu_zishuang
+ * @Date 2020-09-17
+ */
 @Slf4j
 @RestControllerAdvice
 public class CustomExceptionHandler {
@@ -32,7 +32,7 @@ public class CustomExceptionHandler {
      */
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
-    public BaseResponse handleBindException(Exception e, HttpServletRequest request) {
+    public BaseResponse handleBindException(Exception e) {
         if (e instanceof MethodArgumentNotValidException) {
             MethodArgumentNotValidException methodArgumentNotValidException = (MethodArgumentNotValidException) e;
             log.error(Constant.LOG_INFO_PREFIX, methodArgumentNotValidException.getMessage());
@@ -68,8 +68,8 @@ public class CustomExceptionHandler {
     @ResponseBody
     public BaseResponse handleServiceException(ServiceException e, HttpServletRequest request) {
         // 打印业务异常日志
-        log.error("接口: {} 异常，异常状态码 {}，异常信息：{}", request.getRequestURI(), ExceptionConstantEnum.ACCOUNT_NOT.getCode(), ExceptionConstantEnum.ACCOUNT_NOT.getMessage(), e);
-        return BaseResponseUtil.fail(ExceptionConstantEnum.ACCOUNT_NOT);
+        log.error("接口: {} 异常，异常状态码 {}，异常信息：{}", request.getRequestURI(), e.code, e.getMessage(), e);
+        return BaseResponseUtil.fail(e.code, e.getMessage());
     }
 
 }

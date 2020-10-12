@@ -26,6 +26,9 @@ public enum ExceptionConstantEnum implements ExceptionInterface {
      */
     USER_NOT_EXIT_EXCEPTION(601, "用户不存在异常"),
 
+    /**
+     * 无权访问
+     */
     PERMISSION_NOT(10003, "无访问权限");
 
     /**
