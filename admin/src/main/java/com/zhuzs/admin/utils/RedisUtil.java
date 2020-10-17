@@ -1,6 +1,6 @@
 package com.zhuzs.admin.utils;
 
-import com.zhuzs.admin.common.ExpireEnum;
+import com.zhuzs.admin.comm.ExpireEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.BoundListOperations;
 import org.springframework.data.redis.core.RedisTemplate;

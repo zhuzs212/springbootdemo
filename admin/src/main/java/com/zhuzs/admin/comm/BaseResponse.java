@@ -1,4 +1,4 @@
-package com.zhuzs.admin.common;
+package com.zhuzs.admin.comm;
 
 import com.zhuzs.common.Constant;
 import lombok.Data;

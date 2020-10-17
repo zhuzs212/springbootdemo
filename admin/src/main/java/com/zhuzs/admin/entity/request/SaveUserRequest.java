@@ -1,6 +1,6 @@
 package com.zhuzs.admin.entity.request;
 
-import com.zhuzs.admin.common.validated.Insert;
+import com.zhuzs.admin.comm.validated.Insert;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

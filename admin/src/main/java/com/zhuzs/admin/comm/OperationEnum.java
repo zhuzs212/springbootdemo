@@ -1,4 +1,4 @@
-package com.zhuzs.admin.common;
+package com.zhuzs.admin.comm;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,15 +14,15 @@ public enum OperationEnum {
     /**
      * 新增操作成功
      */
-    SAVE_SUCCESS(201,"新增成功！"),
+    SAVE_SUCCESS(201, "新增成功！"),
     /**
      * 修改操作成功
      */
-    UPDATE_SUCCESS(202,"修改成功！"),
+    UPDATE_SUCCESS(202, "修改成功！"),
     /**
      * 删除操作成功
      */
-    DELETE_SUCCESS(203,"删除成功！");
+    DELETE_SUCCESS(203, "删除成功！");
     /**
      * 结果类型CODE
      */

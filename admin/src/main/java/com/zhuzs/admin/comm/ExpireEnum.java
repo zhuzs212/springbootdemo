@@ -1,8 +1,9 @@
-package com.zhuzs.admin.common;
+package com.zhuzs.admin.comm;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.experimental.Accessors;
+
 import java.util.concurrent.TimeUnit;
 
 /**

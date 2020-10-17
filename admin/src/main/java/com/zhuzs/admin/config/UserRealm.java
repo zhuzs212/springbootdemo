@@ -53,7 +53,7 @@ public class UserRealm extends AuthorizingRealm {
      * @throws AuthenticationException
      */
     @Override
-    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) {
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
         UserDO userDO = userService.getUser(token.getUsername());
         if (userDO != null) {

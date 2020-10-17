@@ -1,4 +1,4 @@
-package com.zhuzs.admin.common;
+package com.zhuzs.admin.comm;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

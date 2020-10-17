@@ -1,4 +1,4 @@
-package com.zhuzs.admin.common;
+package com.zhuzs.admin.comm;
 
 /**
  * 枚举类 封装
@@ -9,12 +9,14 @@ package com.zhuzs.admin.common;
 public interface ExceptionInterface {
     /**
      * 获取错误码
+     *
      * @return
      */
     int getCode();
 
     /**
      * 获取异常信息
+     *
      * @return
      */
     String getMessage();

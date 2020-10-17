@@ -1,6 +1,6 @@
 package com.zhuzs.admin.exception;
 
-import com.zhuzs.admin.common.ExceptionInterface;
+import com.zhuzs.admin.comm.ExceptionInterface;
 
 /**
  * 业务异常累(业务处理时手动抛出异常)

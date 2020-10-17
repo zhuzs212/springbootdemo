@@ -1,9 +1,9 @@
 package com.zhuzs.admin.utils;
 
-import com.zhuzs.admin.common.BaseResponse;
-import com.zhuzs.admin.common.ExceptionConstantEnum;
-import com.zhuzs.admin.common.OperationEnum;
-import com.zhuzs.admin.common.SysExceptionEnum;
+import com.zhuzs.admin.comm.BaseResponse;
+import com.zhuzs.admin.comm.OperationEnum;
+import com.zhuzs.admin.exception.SysExceptionEnum;
+import com.zhuzs.admin.service.constant.ExceptionConstantEnum;
 import com.zhuzs.common.Constant;
 
 /**
@@ -27,6 +27,8 @@ public final class BaseResponseUtil {
      * 构造器私有，防止外部实例化
      */
     private BaseResponseUtil() {
+        // 防止反射
+        throw new RuntimeException();
     }
 
     /**
@@ -50,6 +52,7 @@ public final class BaseResponseUtil {
 
     /**
      * 包裹响应对象，此方法适合 增、删、改 操作有数据实体场景下调用
+     *
      * @param operationEnum
      * @return
      */
@@ -69,6 +72,7 @@ public final class BaseResponseUtil {
 
     /**
      * 包裹响应对象，自定义业务异常 场景下调用
+     *
      * @param baseResponseCode
      * @return
      */
@@ -78,6 +82,7 @@ public final class BaseResponseUtil {
 
     /**
      * 包裹响应对象，系统异常 场景下调用
+     *
      * @param sysExceptionEnum
      * @return 响应实体
      */

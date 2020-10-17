@@ -15,6 +15,9 @@ import javax.validation.constraints.NotNull;
  */
 
 public class ShiroUtils {
+    private ShiroUtils() {
+    }
+
     /**
      * 校验角色
      *
