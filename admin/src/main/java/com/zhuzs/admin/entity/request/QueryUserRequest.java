@@ -5,8 +5,6 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.ToString;
 
-import java.io.Serializable;
-
 /**
  * 查询用户 请求参数
  *
@@ -16,8 +14,7 @@ import java.io.Serializable;
 @Data
 @ToString
 @ApiModel(value = "查询用户请求入参实体")
-public class QueryUserRequest implements Serializable {
-    private static final long serialVersionUID = -6716772084974704679L;
+public class QueryUserRequest {
     /**
      * 姓名
      */

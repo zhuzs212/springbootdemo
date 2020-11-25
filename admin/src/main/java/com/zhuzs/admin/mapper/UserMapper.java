@@ -11,15 +11,15 @@ import com.zhuzs.admin.entity.domain.UserDO;
 public interface UserMapper {
 
     /**
-     * @param userName
+     * @param name
      * @return
      */
-    UserDO getUser(String userName);
+    UserDO getUser(String name);
 
     /**
-     * @param userName
+     * @param name
      * @return
      */
-    PermissionDO getPermission(String userName);
+    PermissionDO getPermission(String name);
 }
 

@@ -1,37 +1,32 @@
-package com.zhuzs.admin.entity.domain;
+package com.zhuzs.admin.entity.request;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.ToString;
 
 /**
- * 用户 映射实体
+ * 查询用户 请求参数
  *
  * @Author zhu_zishuang
- * @Date 2020-09-17
+ * @Date 2020-09-16
  */
 @Data
-public class UserDO {
-    /**
-     * 主键ID
-     */
-    @ApiModelProperty(value = "id")
-    private Integer id;
-
+@ToString
+@ApiModel(value = "查询用户请求入参实体")
+public class LoginUserRequest {
     /**
      * 姓名
      */
+
     @ApiModelProperty(value = "姓名")
     private String name;
-
     /**
      * 密码
      */
+    @ApiModelProperty(value = "密码")
     private String password;
 
-    /**
-     * 角色
-     */
-    private RoleDO roleDO;
 
     /**
      * 组织编号

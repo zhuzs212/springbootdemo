@@ -14,14 +14,14 @@ public interface UserService {
     /**
      * 查询单个用户
      *
-     * @param username
+     * @param name
      * @return
      */
-    UserDO getUser(String username);
+    UserDO getUser(String name);
 
     /**
-     * @param username
+     * @param name
      * @return
      */
-    PermissionDO getPermission(String username);
+    PermissionDO getPermission(String name);
 }

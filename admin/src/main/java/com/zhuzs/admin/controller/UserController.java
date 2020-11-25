@@ -1,8 +1,11 @@
 package com.zhuzs.admin.controller;
 
+import com.zhuzs.admin.annotation.InterceptRequestParamAnnotation;
 import com.zhuzs.admin.entity.domain.UserDO;
+import com.zhuzs.admin.entity.request.LoginUserRequest;
 import com.zhuzs.admin.service.UserService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -41,27 +44,35 @@ public class UserController {
      * @return
      */
     @PostMapping("/queryUser")
+    @ApiOperation("查询单个用户")
     public UserDO queryUser(String userName) {
 //        ShiroUtils.checkRole(Constant.ADMIN);
         return userService.getUser(userName);
     }
 
-    @GetMapping("/{url}")
-    public String redirect(@PathVariable("url") String url) {
-        return url;
-    }
-
+    /**
+     * 登陆接口
+     *
+     * @param request
+     * @param model
+     * @return
+     * @Author zhu_zishuang
+     * @Date 2020-10-23
+     */
     @PostMapping("/login")
-    public String login(String userName, String password, Model model) {
+    @ApiOperation("")
+    @InterceptRequestParamAnnotation
+    public String login(LoginUserRequest request, Model model) {
         // 获取 subject 认证主体（这里也就是现在登录的用户）
         Subject subject = SecurityUtils.getSubject();
         // 创建出一个 Token 内容本质基于前台的用户名和密码（不一定正确）
-        UsernamePasswordToken token = new UsernamePasswordToken(userName, password);
+        UsernamePasswordToken token = new UsernamePasswordToken(request.getName(), request.getPassword());
 
         // 由于是根据name参数获取的，我这里封装了一下
         UserDO user = new UserDO();
-        user.setName(userName);
-        user.setPassword(password);
+        user.setName(request.getName());
+        user.setPassword(request.getPassword());
+        user.setOrgNo(request.getOrgNo());
         try {
             // 认证开始，这里会跳转到自定义的 UserRealm 中
             subject.login(token);
@@ -77,6 +88,14 @@ public class UserController {
         }
     }
 
+    /**
+     * 登出接口
+     *
+     * @param
+     * @return
+     * @Author zhu_zishuang
+     * @Date 2020-10-23
+     */
     @GetMapping("/logout")
     public String logout() {
         Subject subject = SecurityUtils.getSubject();

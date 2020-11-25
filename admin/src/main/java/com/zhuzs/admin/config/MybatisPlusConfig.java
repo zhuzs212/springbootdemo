@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
 import com.zhuzs.common.Constant;
+import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.type.JdbcType;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -63,21 +64,20 @@ public class MybatisPlusConfig {
 
     /**
      * 配置 Oracle jdbcTypeForNull允许null写入
+     *
      * @return
      */
     @Bean
-    public ConfigurationCustomizer configurationCustomizer(){
-        return new MyBatisCustomizer();
+    public ConfigurationCustomizer configurationCustomizer() {
+        return new ConfigurationCustomizer() {
+            /**
+             * 配置Oracle新增、修改操作时，jdbcTypeForNull允许null写入
+             */
+            @Override
+            public void customize(Configuration configuration) {
+                configuration.setJdbcTypeForNull(JdbcType.NULL);
+            }
+        };
     }
 }
 
-class MyBatisCustomizer implements ConfigurationCustomizer{
-    /**
-     * 配置Oracle新增、修改操作时，jdbcTypeForNull允许null写入
-     */
-    @Override
-    public void customize(org.apache.ibatis.session.Configuration configuration){
-        configuration.setJdbcTypeForNull(JdbcType.NULL);
-    }
-
-}

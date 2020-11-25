@@ -5,6 +5,7 @@ import com.zhuzs.admin.entity.domain.UserDO;
 import com.zhuzs.admin.mapper.UserMapper;
 import com.zhuzs.admin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -23,14 +24,14 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-//    @Cacheable(cacheNames = "uer", key = "#userName")
-    public UserDO getUser(String userName) {
-        return userMapper.getUser(userName);
+    @Cacheable(cacheNames = "uer", key = "#name")
+    public UserDO getUser(String name) {
+        return userMapper.getUser(name);
     }
 
     @Override
-    public PermissionDO getPermission(String userName) {
-        return userMapper.getPermission(userName);
+    public PermissionDO getPermission(String name) {
+        return userMapper.getPermission(name);
     }
 }
 
