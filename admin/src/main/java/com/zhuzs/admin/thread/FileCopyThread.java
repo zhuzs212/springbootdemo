@@ -14,7 +14,10 @@ import java.util.UUID;
  */
 @Slf4j
 public class FileCopyThread extends AbstractTaskThread {
-    // TODO 测试用途
+    /**
+     * TaskDemoService
+     * TODO 测试用途
+     */
     private TaskDemoService taskDemoService;
 
     /**

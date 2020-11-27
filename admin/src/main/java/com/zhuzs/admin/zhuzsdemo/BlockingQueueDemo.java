@@ -1,7 +1,10 @@
 package com.zhuzs.admin.zhuzsdemo;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.time.LocalDateTime;
 import java.util.concurrent.ArrayBlockingQueue;
+
 
 /**
  * 阻塞队列的基本使用
@@ -9,10 +12,11 @@ import java.util.concurrent.ArrayBlockingQueue;
  * @author: zhu_zishuang
  * @date: 2020-11-27
  */
+@Slf4j
 public class BlockingQueueDemo {
 
     public static void main(String[] args) {
-        ArrayBlockingQueue<Integer> queue = new ArrayBlockingQueue<Integer>(10);
+        ArrayBlockingQueue<Integer> queue = new ArrayBlockingQueue<>(10);
 
         Consumer consumer = new Consumer(queue);
         Producer producer = new Producer(queue);
@@ -30,6 +34,7 @@ public class BlockingQueueDemo {
  * @Author zhu_zishuang
  * @Date 2020-11-27
  */
+@Slf4j
 class Consumer extends Thread {
     private ArrayBlockingQueue<Integer> queue;
 
@@ -41,9 +46,10 @@ class Consumer extends Thread {
     public void run() {
         queue.clear();
         while (true) {
+            Integer i = null;
             try {
-                Integer i = queue.take();
-                System.out.println("消费者从队列取出元素:" + i);
+                i = queue.take();
+                log.info("消费者从队列取出元素:" + i);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -57,6 +63,7 @@ class Consumer extends Thread {
  * @Author zhu_zishuang
  * @Date 2020-11-27
  */
+@Slf4j
 class Producer extends Thread {
     private ArrayBlockingQueue<Integer> queue;
 
@@ -71,14 +78,15 @@ class Producer extends Thread {
             try {
                 queue.put(i);
                 if (i == 50) {
-                    System.out.println("------" + LocalDateTime.now() + "sleep 50S，开始！------");
+                    log.info("------" + LocalDateTime.now() + "sleep 50S，开始！------");
                     Thread.sleep(50000);
-                    System.out.println("------" + LocalDateTime.now() + "sleep 50S，结束！------");
+                    log.info("------" + LocalDateTime.now() + "sleep 50S，结束！------");
                 }
-                System.out.println("生产者向队列插入元素:" + i);
+                log.info("生产者向队列插入元素:" + i);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
         }
     }
 }

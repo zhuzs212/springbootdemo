@@ -4,6 +4,8 @@ import com.zhuzs.admin.annotation.InterceptRequestParamAnnotation;
 import com.zhuzs.admin.entity.domain.UserDO;
 import com.zhuzs.admin.entity.request.LoginUserRequest;
 import com.zhuzs.admin.service.UserService;
+import com.zhuzs.admin.utils.ShiroUtils;
+import com.zhuzs.common.Constant;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
@@ -46,7 +48,7 @@ public class UserController {
     @PostMapping("/queryUser")
     @ApiOperation("查询单个用户")
     public UserDO queryUser(String userName) {
-//        ShiroUtils.checkRole(Constant.ADMIN);
+        ShiroUtils.checkRole(Constant.ADMIN);
         return userService.getUser(userName);
     }
 
@@ -62,7 +64,7 @@ public class UserController {
     @PostMapping("/login")
     @ApiOperation("")
     @InterceptRequestParamAnnotation
-    public String login(LoginUserRequest request, Model model) {
+    public Boolean login(LoginUserRequest request, Model model) {
         // 获取 subject 认证主体（这里也就是现在登录的用户）
         Subject subject = SecurityUtils.getSubject();
         // 创建出一个 Token 内容本质基于前台的用户名和密码（不一定正确）
@@ -78,13 +80,13 @@ public class UserController {
             subject.login(token);
             UserDO userDO = (UserDO) subject.getPrincipal();
             subject.getSession().setAttribute("userDO", userDO);
-            return "index";
+            return true;
         } catch (UnknownAccountException e) {
             model.addAttribute("msg", "用户名错误");
-            return "login";
+            return false;
         } catch (IncorrectCredentialsException e) {
             model.addAttribute("msg", "密码错误");
-            return "login";
+            return false;
         }
     }
 
@@ -97,9 +99,9 @@ public class UserController {
      * @Date 2020-10-23
      */
     @GetMapping("/logout")
-    public String logout() {
+    public Boolean logout() {
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
-        return "login";
+        return true;
     }
 }

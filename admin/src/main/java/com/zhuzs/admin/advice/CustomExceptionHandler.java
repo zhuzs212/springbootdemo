@@ -32,7 +32,7 @@ public class CustomExceptionHandler {
      */
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
-    public BaseResponse handleBindException(Exception e) {
+    public BaseResponse<Object> handleBindException(Exception e) {
         if (e instanceof MethodArgumentNotValidException) {
             MethodArgumentNotValidException methodArgumentNotValidException = (MethodArgumentNotValidException) e;
             log.error(Constant.LOG_INFO_PREFIX, methodArgumentNotValidException.getMessage());
@@ -66,7 +66,7 @@ public class CustomExceptionHandler {
      */
     @ExceptionHandler(value = ServiceException.class)
     @ResponseBody
-    public BaseResponse handleServiceException(ServiceException e, HttpServletRequest request) {
+    public BaseResponse<Object> handleServiceException(ServiceException e, HttpServletRequest request) {
         // 打印业务异常日志
         log.error("接口: {} 异常，异常状态码 {}，异常信息：{}", request.getRequestURI(), e.code, e.getMessage(), e);
         return BaseResponseUtil.fail(e.code, e.getMessage());

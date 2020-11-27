@@ -11,14 +11,18 @@ import com.zhuzs.admin.entity.domain.UserDO;
 public interface UserMapper {
 
     /**
+     * 查询单个用户
+     *
      * @param name
-     * @return
+     * @return 单个用户
      */
     UserDO getUser(String name);
 
     /**
+     * 查询用户角色
+     *
      * @param name
-     * @return
+     * @return 用户角色
      */
     PermissionDO getPermission(String name);
 }

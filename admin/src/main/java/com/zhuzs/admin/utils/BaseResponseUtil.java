@@ -2,6 +2,7 @@ package com.zhuzs.admin.utils;
 
 import com.zhuzs.admin.comm.BaseResponse;
 import com.zhuzs.admin.comm.OperationEnum;
+import com.zhuzs.admin.exception.ServiceException;
 import com.zhuzs.admin.exception.SysExceptionEnum;
 import com.zhuzs.admin.service.constant.ExceptionConstantEnum;
 import com.zhuzs.common.Constant;
@@ -28,7 +29,7 @@ public final class BaseResponseUtil {
      */
     private BaseResponseUtil() {
         // 防止反射
-        throw new RuntimeException();
+        throw new ServiceException(SysExceptionEnum.SYS_EXCEPTION);
     }
 
     /**
@@ -36,8 +37,8 @@ public final class BaseResponseUtil {
      *
      * @return 响应实体
      */
-    public static BaseResponse success() {
-        return new BaseResponse().setCode(SUCCESS_CODE).setMessage(DEFAULT_SUCCESS_MESSAGE);
+    public static BaseResponse<Object> success() {
+        return new BaseResponse<>().setCode(SUCCESS_CODE).setMessage(DEFAULT_SUCCESS_MESSAGE);
     }
 
     /**
@@ -46,7 +47,7 @@ public final class BaseResponseUtil {
      * @param data 数据实体
      * @return 响应实体
      */
-    public static BaseResponse success(Object data) {
+    public static BaseResponse<Object> success(Object data) {
         return success().setData(data);
     }
 
@@ -56,7 +57,7 @@ public final class BaseResponseUtil {
      * @param operationEnum
      * @return
      */
-    public static BaseResponse success(OperationEnum operationEnum) {
+    public static BaseResponse<Object> success(OperationEnum operationEnum) {
         return success().setCode(operationEnum.getCode()).setMessage(operationEnum.getMessage());
     }
 
@@ -66,8 +67,8 @@ public final class BaseResponseUtil {
      * @param message 异常消息
      * @return 响应实体
      */
-    public static BaseResponse fail(Integer code, String message) {
-        return new BaseResponse().setStatus(Constant.FAIL).setCode(code).setMessage(message);
+    public static BaseResponse<Object> fail(Integer code, String message) {
+        return new BaseResponse<>().setStatus(Constant.FAIL).setCode(code).setMessage(message);
     }
 
     /**
@@ -76,8 +77,8 @@ public final class BaseResponseUtil {
      * @param baseResponseCode
      * @return
      */
-    public static BaseResponse fail(ExceptionConstantEnum baseResponseCode) {
-        return new BaseResponse().setStatus(Constant.FAIL).setCode(baseResponseCode.getCode()).setMessage(baseResponseCode.getMessage());
+    public static BaseResponse<Object> fail(ExceptionConstantEnum baseResponseCode) {
+        return new BaseResponse<>().setStatus(Constant.FAIL).setCode(baseResponseCode.getCode()).setMessage(baseResponseCode.getMessage());
     }
 
     /**
@@ -86,8 +87,8 @@ public final class BaseResponseUtil {
      * @param sysExceptionEnum
      * @return 响应实体
      */
-    public static BaseResponse error(SysExceptionEnum sysExceptionEnum) {
-        return new BaseResponse().setStatus(Constant.ERROR).setCode(sysExceptionEnum.getCode()).setMessage(sysExceptionEnum.getMessage());
+    public static BaseResponse<Object> error(SysExceptionEnum sysExceptionEnum) {
+        return new BaseResponse<>().setStatus(Constant.ERROR).setCode(sysExceptionEnum.getCode()).setMessage(sysExceptionEnum.getMessage());
     }
 }
 

@@ -27,7 +27,6 @@ public class TaskDemo {
         log.info("定时任务写作练习，开始执行！");
         taskDemoService.dailyWriting();
         log.info("定时任务写作练习，执行结束！");
-        return;
     }
 }
 

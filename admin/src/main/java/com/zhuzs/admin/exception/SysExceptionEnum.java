@@ -19,7 +19,11 @@ public enum SysExceptionEnum implements ExceptionInterface {
     /**
      * 创建线程失败异常
      */
-    CREATE_THREAD_EXCEPTION(10002, "创建线程失败！");
+    CREATE_THREAD_EXCEPTION(10002, "创建线程失败！"),
+    /**
+     * 创建线程失败异常
+     */
+    INCREMENT_LESS_THAN_ZERO(10003, "递增因子小于0！");
 
     @Getter
     private final int code;

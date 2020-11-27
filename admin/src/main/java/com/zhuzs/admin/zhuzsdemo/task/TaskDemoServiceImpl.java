@@ -3,7 +3,6 @@ package com.zhuzs.admin.zhuzsdemo.task;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.time.LocalDateTime;
@@ -21,19 +20,21 @@ public class TaskDemoServiceImpl implements TaskDemoService {
     public void dailyWriting() {
         // 文件开始位置
         long begin = 0L;
-        /*
-         * 创建source表示要复制的文件
-         * 源文件只需要有读权限
-         */
-        RandomAccessFile source = null;
-        /*
-         * 创建dest表示复制后的文件
-         * 要写入的文件需要读写权限
-         */
-        RandomAccessFile dest = null;
-        try {
-            source = new RandomAccessFile("/Users/zhuzs/zhuzs/1.代码评审记录.txt", "r");
-            dest = new RandomAccessFile("/Users/zhuzs/zhuzs/1.代码评审记录" + LocalDateTime.now().getMinute() + LocalDateTime.now().getSecond() + ".txt ", "rw");
+
+
+        try (
+                /*
+                 * 创建source表示要复制的文件
+                 * 源文件只需要有读权限
+                 */
+                RandomAccessFile source = new RandomAccessFile("/Users/zhuzs/zhuzs/1.代码评审记录.txt", "r");
+                /*
+                 * 创建dest表示复制后的文件
+                 * 要写入的文件需要读写权限
+                 */
+                RandomAccessFile dest = new RandomAccessFile("/Users/zhuzs/zhuzs/1.代码评审记录" + LocalDateTime.now().getMinute() + LocalDateTime.now().getSecond() + ".txt ", "rw");
+        ) {
+
             source.seek(begin);
             dest.seek(begin);
             /*
@@ -44,20 +45,9 @@ public class TaskDemoServiceImpl implements TaskDemoService {
                 begin += d;
                 dest.write(d);
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                source.close();
-                dest.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
         }
-
     }
 }
 

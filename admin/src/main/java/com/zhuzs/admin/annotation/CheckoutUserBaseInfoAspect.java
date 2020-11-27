@@ -8,9 +8,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
@@ -44,13 +42,7 @@ public class CheckoutUserBaseInfoAspect {
                 Method writeMethod = propertyDescriptor.getWriteMethod();
                 writeMethod.invoke(target, "这是后台自动录入");
             }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (IntrospectionException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

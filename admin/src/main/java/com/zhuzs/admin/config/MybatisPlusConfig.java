@@ -69,15 +69,22 @@ public class MybatisPlusConfig {
      */
     @Bean
     public ConfigurationCustomizer configurationCustomizer() {
-        return new ConfigurationCustomizer() {
-            /**
-             * 配置Oracle新增、修改操作时，jdbcTypeForNull允许null写入
-             */
-            @Override
-            public void customize(Configuration configuration) {
+//        return new ConfigurationCustomizer() {
+//            /**
+//             * 配置Oracle新增、修改操作时，jdbcTypeForNull允许null写入
+//             */
+//            @Override
+//            public void customize(Configuration configuration) {
+//                configuration.setJdbcTypeForNull(JdbcType.NULL);
+//            }
+//        };
+
+        /*
+         * 配置Oracle新增、修改操作时，jdbcTypeForNull允许null写入
+         */
+        return (Configuration configuration) ->
                 configuration.setJdbcTypeForNull(JdbcType.NULL);
-            }
-        };
+
     }
 }
 
