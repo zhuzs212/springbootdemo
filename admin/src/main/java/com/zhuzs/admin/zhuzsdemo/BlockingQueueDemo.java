@@ -1,0 +1,84 @@
+package com.zhuzs.admin.zhuzsdemo;
+
+import java.time.LocalDateTime;
+import java.util.concurrent.ArrayBlockingQueue;
+
+/**
+ * 阻塞队列的基本使用
+ *
+ * @author: zhu_zishuang
+ * @date: 2020-11-27
+ */
+public class BlockingQueueDemo {
+
+    public static void main(String[] args) {
+        ArrayBlockingQueue<Integer> queue = new ArrayBlockingQueue<Integer>(10);
+
+        Consumer consumer = new Consumer(queue);
+        Producer producer = new Producer(queue);
+
+        producer.start();
+        consumer.start();
+
+
+    }
+}
+
+/**
+ * 消费者
+ *
+ * @Author zhu_zishuang
+ * @Date 2020-11-27
+ */
+class Consumer extends Thread {
+    private ArrayBlockingQueue<Integer> queue;
+
+    public Consumer(ArrayBlockingQueue<Integer> queue) {
+        this.queue = queue;
+    }
+
+    @Override
+    public void run() {
+        queue.clear();
+        while (true) {
+            try {
+                Integer i = queue.take();
+                System.out.println("消费者从队列取出元素:" + i);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+/**
+ * 生产者
+ *
+ * @Author zhu_zishuang
+ * @Date 2020-11-27
+ */
+class Producer extends Thread {
+    private ArrayBlockingQueue<Integer> queue;
+
+    public Producer(ArrayBlockingQueue<Integer> queue) {
+        this.queue = queue;
+    }
+
+    @Override
+    public void run() {
+        queue.clear();
+        for (int i = 0; i < 100; i++) {
+            try {
+                queue.put(i);
+                if (i == 50) {
+                    System.out.println("------" + LocalDateTime.now() + "sleep 50S，开始！------");
+                    Thread.sleep(50000);
+                    System.out.println("------" + LocalDateTime.now() + "sleep 50S，结束！------");
+                }
+                System.out.println("生产者向队列插入元素:" + i);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}

@@ -15,7 +15,11 @@ public enum SysExceptionEnum implements ExceptionInterface {
     /**
      * 系统发生异常
      */
-    SYS_EXCEPTION(10001, "系统发生异常！");
+    SYS_EXCEPTION(10001, "系统发生异常！"),
+    /**
+     * 创建线程失败异常
+     */
+    CREATE_THREAD_EXCEPTION(10002, "创建线程失败！");
 
     @Getter
     private final int code;

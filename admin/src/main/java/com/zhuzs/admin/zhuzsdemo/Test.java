@@ -1,4 +1,4 @@
-package com.zhuzs.admin.utils;
+package com.zhuzs.admin.zhuzsdemo;
 
 import java.util.*;
 
@@ -15,14 +15,17 @@ public class Test {
 //        List<Set<Integer>> result = generate(pass1, pass2);
 
         // 2,6,8,14,15,17,22,26,32,33
-        Integer[] integerArr1 = {1, 2, 3, 4, 5, 10, 11, 13, 15, 17, 19, 20, 21, 22, 23, 24, 28, 29, 31, 33, 35};
-        Integer[] integerArr2 = {2, 3, 4, 5, 6, 9};
-        List<Set<Integer>> result = generate2(integerArr1, integerArr2);
+//        Integer[] integerArr1 = {1, 2, 3, 4, 5, 10, 11, 13, 15, 17, 19, 20, 21, 22, 23, 24, 28, 29, 31, 33, 35};
+//        Integer[] integerArr2 = {2, 3, 4, 5, 6, 9};
+//        List<Set<Integer>> result = generate2(integerArr1, integerArr2);
+//
+//
+//        for (Set<Integer> set : result) {
+//            System.out.println(set);
+//        }
 
-
-        for (Set<Integer> set : result) {
-            System.out.println(set);
-        }
+        System.out.println("结果1：" + 333334 % 23);
+        System.out.println("结果2：" + 333334 / (333334 % 23));
     }
 
     public static List<Set<Integer>> generate(Integer[] pass1, Integer[] pass2) {
