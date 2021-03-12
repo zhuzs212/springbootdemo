@@ -7,7 +7,6 @@ import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
 import com.zhuzs.common.Constant;
-import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.type.JdbcType;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -19,8 +18,8 @@ import java.util.List;
 /**
  * 配置mybatisPlus插件
  *
- * @author xyyxhcj@qq.com
- * @since 2018-08-25
+ * @author zhu_zishuang
+ * @date 2021-03-12
  */
 @EnableTransactionManagement
 @SpringBootConfiguration
@@ -64,6 +63,7 @@ public class MybatisPlusConfig {
 
     /**
      * 配置 Oracle jdbcTypeForNull允许null写入
+     * TODO 函数式接口的Lambda实现
      *
      * @return
      */
@@ -82,7 +82,7 @@ public class MybatisPlusConfig {
         /*
          * 配置Oracle新增、修改操作时，jdbcTypeForNull允许null写入
          */
-        return (Configuration configuration) ->
+        return configuration ->
                 configuration.setJdbcTypeForNull(JdbcType.NULL);
 
     }

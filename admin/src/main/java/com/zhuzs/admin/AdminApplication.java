@@ -7,8 +7,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * @Description zhuzsdemo 入口类
- * @Author zhu_zishuang
- * @Date 2020-06-13
+ * @author zhu_zishuang
+ * @date 2020-06-13
  */
 @MapperScan("com.zhuzs.admin.mapper")
 @SpringBootApplication

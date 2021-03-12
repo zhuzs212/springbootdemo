@@ -2,14 +2,19 @@ package com.zhuzs.admin.entity.domain;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.experimental.Accessors;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 /**
  * 用户 映射实体
  *
- * @Author zhu_zishuang
- * @Date 2020-09-17
+ * @author zhu_zishuang
+ * @date 2020-09-17
  */
 @Data
+@Component
+@Accessors
 public class UserDO {
     /**
      * 主键ID
@@ -36,6 +41,7 @@ public class UserDO {
     /**
      * 组织编号
      */
+    @Value("${user.orgNo}")
     private String orgNo;
 }
 

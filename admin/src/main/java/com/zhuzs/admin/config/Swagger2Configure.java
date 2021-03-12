@@ -9,12 +9,13 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * @description：swagger配置类
- * @author: zhu_zishuang
- * @date: 2020-06-12
+ * swagger配置类
+ *
+ * @author zhu_zishuang
+ * @date 2021-03-12
  */
 @Configuration
-@EnableSwagger2
+@EnableSwagger2()
 @ComponentScan("com.zhuzs.admin.controller")
 public class Swagger2Configure {
     @Bean

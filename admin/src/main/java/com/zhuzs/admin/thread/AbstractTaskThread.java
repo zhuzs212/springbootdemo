@@ -6,8 +6,8 @@ import lombok.Data;
 /**
  * 任务线程抽象对象
  *
- * @author: zhu_zishuang
- * @date: 2020-11-26
+ * @author zhu_zishuang
+ * @date 2021-03-12
  */
 @Data
 public abstract class AbstractTaskThread implements Runnable {

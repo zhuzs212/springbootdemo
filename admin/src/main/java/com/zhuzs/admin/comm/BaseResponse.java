@@ -5,9 +5,10 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
- * @description：结果集
- * @author: zhu_zishuang
- * @date: 2020-04-22 14:28
+ * 结果集
+ *
+ * @author zhu_zishuang
+ * @date 2021-03-12
  */
 @Data
 @Accessors(chain = true)

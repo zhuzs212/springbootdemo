@@ -12,10 +12,11 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
 /**
- * @Description LocalDateTime
+ * LocalDateTime
  * 重新定义Bean并重新实现逻辑
- * @Author zhu_zishuang
- * @Date 2020-04-25 19:20
+ *
+ * @author zhu_zishuang
+ * @date 2021-03-12
  */
 @Configuration
 public class JacksonConfig {

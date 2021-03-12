@@ -9,11 +9,11 @@ import java.util.concurrent.ArrayBlockingQueue;
 /**
  * 阻塞队列的基本使用
  *
- * @author: zhu_zishuang
- * @date: 2020-11-27
+ * @author zhu_zishuang
+ * @date 2021-03-12
  */
 @Slf4j
-public class BlockingQueueDemo {
+public class BlockingQueue {
 
     public static void main(String[] args) {
         ArrayBlockingQueue<Integer> queue = new ArrayBlockingQueue<>(10);
@@ -31,8 +31,8 @@ public class BlockingQueueDemo {
 /**
  * 消费者
  *
- * @Author zhu_zishuang
- * @Date 2020-11-27
+ * @author zhu_zishuang
+ * @date 2020-11-27
  */
 @Slf4j
 class Consumer extends Thread {
@@ -60,8 +60,8 @@ class Consumer extends Thread {
 /**
  * 生产者
  *
- * @Author zhu_zishuang
- * @Date 2020-11-27
+ * @author zhu_zishuang
+ * @date 2020-11-27
  */
 @Slf4j
 class Producer extends Thread {

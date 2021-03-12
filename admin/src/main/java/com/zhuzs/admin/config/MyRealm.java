@@ -1,6 +1,8 @@
 package com.zhuzs.admin.config;
 
 import com.zhuzs.admin.entity.domain.UserDO;
+import com.zhuzs.admin.exception.ServiceException;
+import com.zhuzs.admin.exception.SysExceptionEnum;
 import com.zhuzs.admin.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -10,17 +12,49 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * @author: zhu_zishuang
- * @date: 2020-10-09
+ * shiro 自定义realm
+ *
+ * @author zhu_zishuang
+ * @date 2021-03-12
  */
-public class UserRealm extends AuthorizingRealm {
+public class MyRealm extends AuthorizingRealm {
     @Autowired
     private UserService userService;
+
+    /**
+     * 认证
+     *
+     * @param authenticationToken
+     * @return
+     * @throws AuthenticationException
+     */
+    @Override
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) {
+        UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
+        String username = token.getUsername();
+        // 判断用户名是否为空
+        if (StringUtils.isEmpty(username)) {
+            throw new ServiceException(SysExceptionEnum.ACCOUNT_IS_EMPTY);
+        }
+
+        UserDO userDO = userService.getUser(username);
+        if (ObjectUtils.isEmpty(userDO)) {
+            // userDO为null,抛出自定义异常
+            throw new ServiceException(SysExceptionEnum.ACCOUNT_NOT_EXIST);
+        }
+
+        // 存入 Session，可选
+        SecurityUtils.getSubject().getSession().setAttribute("user", userDO);
+        return new SimpleAuthenticationInfo(userDO, userDO.getPassword(), getName());
+
+    }
 
     /**
      * 授权
@@ -43,24 +77,5 @@ public class UserRealm extends AuthorizingRealm {
         authorizationInfo.addStringPermission(userService.getPermission(userDO.getName()).getPermissionName());
 
         return authorizationInfo;
-    }
-
-    /**
-     * 认证
-     *
-     * @param authenticationToken
-     * @return
-     * @throws AuthenticationException
-     */
-    @Override
-    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) {
-        UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
-        UserDO userDO = userService.getUser(token.getUsername());
-        if (userDO != null) {
-            // 存入 Session，可选
-            SecurityUtils.getSubject().getSession().setAttribute("user", userDO);
-            return new SimpleAuthenticationInfo(userDO, userDO.getPassword(), getName());
-        }
-        return null;
     }
 }

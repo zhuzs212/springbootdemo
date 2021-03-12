@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 /**
  * 用户接口 实现
  *
- * @Author zhu_zishuang
- * @Date 2020-09-17
+ * @author zhu_zishuang
+ * @date 2020-09-17
  */
 @Service
 public class UserServiceImpl implements UserService {
@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    @Cacheable(cacheNames = "uer", key = "#name")
+    @Cacheable(cacheNames = "user", key = "#name", unless = "#result == null")
     public UserDO getUser(String name) {
         return userMapper.getUser(name);
     }

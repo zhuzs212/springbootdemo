@@ -3,8 +3,8 @@ package com.zhuzs.admin.comm;
 /**
  * 枚举类 封装
  *
- * @author: zhu_zishuang
- * @date: 2020-07-16
+ * @author zhu_zishuang
+ * @date 2021-03-12
  */
 public interface ExceptionInterface {
     /**

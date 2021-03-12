@@ -9,8 +9,8 @@ import javax.validation.constraints.NotNull;
 /**
  * 分页请求对象
  *
- * @author: zhu_zishuang
- * @date: 2020-09-17
+ * @author zhu_zishuang
+ * @date 2021-03-12
  */
 @Data
 @ApiModel("分页请求对象")

@@ -14,8 +14,8 @@ import java.lang.reflect.Method;
 /**
  * 校验用户基本信息切面
  *
- * @author: zhu_zishuang
- * @date: 2020-11-25
+ * @author zhu_zishuang
+ * @date 2021-03-12
  */
 @Aspect
 @Component

@@ -9,8 +9,8 @@ import java.util.concurrent.TimeUnit;
 /**
  * redis 过期时间枚举
  *
- * @Author zhu_zishuang
- * @Date 2020-08-06
+ * @author zhu_zishuang
+ * @date 2020-08-06
  */
 @Accessors(chain = true)
 @AllArgsConstructor

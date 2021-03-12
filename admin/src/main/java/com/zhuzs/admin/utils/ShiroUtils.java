@@ -1,7 +1,7 @@
 package com.zhuzs.admin.utils;
 
 import com.zhuzs.admin.exception.ServiceException;
-import com.zhuzs.admin.service.constant.ExceptionConstantEnum;
+import com.zhuzs.admin.exception.SysExceptionEnum;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 
@@ -10,10 +10,9 @@ import javax.validation.constraints.NotNull;
 /**
  * shiro工具类
  *
- * @author xyyxhcj@qq.com
- * @since 2019/05/24
+ * @author zhu_zishuang
+ * @date 2021-03-12
  */
-
 public class ShiroUtils {
     private ShiroUtils() {
     }
@@ -25,7 +24,7 @@ public class ShiroUtils {
      */
     public static void checkRole(@NotNull String roleDefi) {
         if (!hasRole(roleDefi)) {
-            throw new ServiceException(ExceptionConstantEnum.PERMISSION_NOT);
+            throw new ServiceException(SysExceptionEnum.PERMISSION_NOT);
         }
     }
 

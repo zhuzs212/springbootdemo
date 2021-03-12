@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 /**
- * @description：自定义包装处理类
- * @author: zhu_zishuang
- * @date: 2020-04-24 14:01
+ * 自定义包装处理类
+ *
+ * @author zhu_zishuang
+ * @date 2021-03-12
  */
 @Slf4j
 @ControllerAdvice(basePackages = "com.zhuzs.admin.controller")

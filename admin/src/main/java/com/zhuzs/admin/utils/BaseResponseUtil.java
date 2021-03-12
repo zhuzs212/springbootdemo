@@ -1,16 +1,16 @@
 package com.zhuzs.admin.utils;
 
 import com.zhuzs.admin.comm.BaseResponse;
-import com.zhuzs.admin.comm.OperationEnum;
+import com.zhuzs.admin.comm.ExceptionInterface;
 import com.zhuzs.admin.exception.ServiceException;
 import com.zhuzs.admin.exception.SysExceptionEnum;
-import com.zhuzs.admin.service.constant.ExceptionConstantEnum;
 import com.zhuzs.common.Constant;
 
 /**
- * @description：响应包装工具类
- * @author: zhu_zishuang
- * @date: 2020-04-25 11:09
+ * 响应包装工具类
+ *
+ * @author zhu_zishuang
+ * @date 2021-03-12
  */
 public final class BaseResponseUtil {
 
@@ -57,7 +57,7 @@ public final class BaseResponseUtil {
      * @param operationEnum
      * @return
      */
-    public static BaseResponse<Object> success(OperationEnum operationEnum) {
+    public static BaseResponse<Object> success(ExceptionInterface operationEnum) {
         return success().setCode(operationEnum.getCode()).setMessage(operationEnum.getMessage());
     }
 
@@ -77,7 +77,7 @@ public final class BaseResponseUtil {
      * @param baseResponseCode
      * @return
      */
-    public static BaseResponse<Object> fail(ExceptionConstantEnum baseResponseCode) {
+    public static BaseResponse<Object> fail(ExceptionInterface baseResponseCode) {
         return new BaseResponse<>().setStatus(Constant.FAIL).setCode(baseResponseCode.getCode()).setMessage(baseResponseCode.getMessage());
     }
 
@@ -87,7 +87,7 @@ public final class BaseResponseUtil {
      * @param sysExceptionEnum
      * @return 响应实体
      */
-    public static BaseResponse<Object> error(SysExceptionEnum sysExceptionEnum) {
+    public static BaseResponse<Object> error(ExceptionInterface sysExceptionEnum) {
         return new BaseResponse<>().setStatus(Constant.ERROR).setCode(sysExceptionEnum.getCode()).setMessage(sysExceptionEnum.getMessage());
     }
 }

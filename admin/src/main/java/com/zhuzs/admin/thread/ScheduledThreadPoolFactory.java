@@ -10,14 +10,16 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 周期性任务线程池
+ * 线程池 工具类
+ * 含：周期性线程池、可缓存线程池
  *
- * @author: zhu_zishuang
- * @date: 2020-11-26
+ * @author zhu_zishuang
+ * @date 2021-03-12
  */
 public class ScheduledThreadPoolFactory {
     /**
      * 核心线程数
+     * Runtime.getRuntime().availableProcessors():返回可用处理器的Java虚拟机的数量
      */
     public static final Integer CORE_POOL_SIZE = Runtime.getRuntime().availableProcessors() + 1;
 
@@ -38,6 +40,16 @@ public class ScheduledThreadPoolFactory {
 
     /**
      * 可缓存线程池
+     * <p>
+     * 线程池的核心实现
+     * 注：
+     * 该创建方式，更加明确线程池的运行规则，规避资源耗尽的风险。
+     * <p>
+     * Executors各个方法的弊端：
+     * 1）newFixedThreadPool和newSingleThreadExecutor:
+     * 主要问题是堆积的请求处理队列可能会耗费非常大的内存，甚至OOM。
+     * 2）newCachedThreadPool和newScheduledThreadPool:
+     * 主要问题是线程数最大数是Integer.MAX_VALUE，可能会创建数量非常多的线程，甚至OOM。
      */
     private final ThreadPoolExecutor threadPoolExecutor;
 
@@ -55,8 +67,15 @@ public class ScheduledThreadPoolFactory {
                 KEEP_ALIVE_TIME,
                 TimeUnit.SECONDS,
                 new ArrayBlockingQueue<>(MAX_POOL_SIZE),
-                new ThreadFactoryBuilder().setNameFormat("scheduled-threadPool-%d").build(),
+                new ThreadFactoryBuilder().setNameFormat("threadPool-%d").build(),
+                //拒绝策略——默认方式
                 new ThreadPoolExecutor.AbortPolicy()
+                // 将被拒绝的任务添加到"线程池正在运行的线程"中去执行
+//                    new ThreadPoolExecutor.CallerRunsPolicy()
+                // 直接丢弃，不抛出异常
+//                    new ThreadPoolExecutor.DiscardPolicy()
+                // 丢弃队列中最靠前的任务，重新尝试执行任务
+//                    new ThreadPoolExecutor.DiscardOldestPolicy()
         );
     }
 
@@ -85,6 +104,11 @@ public class ScheduledThreadPoolFactory {
         return Singleton.INSTANCE.instance;
     }
 
+    /**
+     * 创建线程
+     *
+     * @param abstractTaskThread 具体线程
+     */
     public void createThread(AbstractTaskThread abstractTaskThread) {
         switch (abstractTaskThread.threadTypeEnum) {
             // 不带延时的周期性线程类型

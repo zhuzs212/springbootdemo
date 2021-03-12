@@ -9,8 +9,8 @@ import java.util.UUID;
 /**
  * 文件拷贝线程
  *
- * @author: zhu_zishuang
- * @date: 2020-11-26
+ * @author zhu_zishuang
+ * @date 2021-03-12
  */
 @Slf4j
 public class FileCopyThread extends AbstractTaskThread {
@@ -34,9 +34,9 @@ public class FileCopyThread extends AbstractTaskThread {
 
     @Override
     public void run() {
-        log.info("文件拷贝任务，开始执行！");
-        taskDemoService.dailyWriting();
-        log.info("文件拷贝任务，执行结束！");
+//        log.info("文件拷贝任务，开始执行！");
+//        taskDemoService.dailyWriting();
+//        log.info("文件拷贝任务，执行结束！");
     }
 }
 

@@ -5,11 +5,13 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.ToString;
 
+import javax.validation.constraints.NotEmpty;
+
 /**
  * 查询用户 请求参数
  *
- * @Author zhu_zishuang
- * @Date 2020-09-16
+ * @author zhu_zishuang
+ * @date 2020-09-16
  */
 @Data
 @ToString
@@ -18,8 +20,8 @@ public class QueryUserRequest {
     /**
      * 姓名
      */
-
     @ApiModelProperty(value = "姓名")
+    @NotEmpty(message = "用户姓名不能为空！")
     private String name;
     /**
      * 年龄

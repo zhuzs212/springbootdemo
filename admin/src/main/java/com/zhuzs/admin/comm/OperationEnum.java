@@ -2,15 +2,17 @@ package com.zhuzs.admin.comm;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.experimental.Accessors;
 
 /**
  * 全局枚举常量类
  *
- * @author: zhu_zishuang
- * @date: 2020-09-17
+ * @author zhu_zishuang
+ * @date 2021-03-12
  */
+@Accessors(chain = true)
 @AllArgsConstructor
-public enum OperationEnum {
+public enum OperationEnum implements ExceptionInterface {
     /**
      * 新增操作成功
      */

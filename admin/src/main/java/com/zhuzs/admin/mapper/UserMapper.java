@@ -4,9 +4,10 @@ import com.zhuzs.admin.entity.domain.PermissionDO;
 import com.zhuzs.admin.entity.domain.UserDO;
 
 /**
- * @description：
- * @author: zhu_zishuang
- * @date: 2020-04-26 08:29
+ * 
+ * 
+ * @author zhu_zishuang
+ * @date 2021-03-12
  */
 public interface UserMapper {
 

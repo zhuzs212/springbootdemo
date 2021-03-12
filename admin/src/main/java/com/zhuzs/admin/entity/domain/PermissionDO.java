@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 /**
  * 权限映射实体
  *
- * @Author zhu_zishuang
- * @Date 2020-10-09
+ * @author zhu_zishuang
+ * @date 2020-10-09
  */
 @Data
 @AllArgsConstructor

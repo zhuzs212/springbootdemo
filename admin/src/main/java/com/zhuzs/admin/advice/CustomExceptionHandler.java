@@ -3,73 +3,82 @@ package com.zhuzs.admin.advice;
 import com.zhuzs.admin.comm.BaseResponse;
 import com.zhuzs.admin.exception.ServiceException;
 import com.zhuzs.admin.exception.SysExceptionEnum;
-import com.zhuzs.admin.service.constant.ExceptionConstantEnum;
 import com.zhuzs.admin.utils.BaseResponseUtil;
-import com.zhuzs.common.Constant;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.context.properties.bind.BindException;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.dao.DataAccessException;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.ConstraintViolationException;
-import java.sql.SQLException;
+import java.util.stream.Collectors;
 
 /**
  * 自定义异常处理器
  *
- * @Author zhu_zishuang
- * @Date 2020-09-17
+ * @author zhu_zishuang
+ * @date 2021-03-12
  */
 @Slf4j
 @RestControllerAdvice
 public class CustomExceptionHandler {
+    /**
+     * 密码校验异常
+     */
+    @ExceptionHandler(AuthenticationException.class)
+    @ResponseBody
+    public BaseResponse<Object> handleAuthenticationException(AuthenticationException e) {
+        if (e instanceof IncorrectCredentialsException) {
+            log.warn("异常信息：{}", SysExceptionEnum.PASSWORD_ERROR.getMessage());
+            return BaseResponseUtil.fail(SysExceptionEnum.PPARAMETER_EMPTY_EXCEPTION.getCode(), SysExceptionEnum.PASSWORD_ERROR.getMessage());
+        }
+        log.warn("异常信息：{}", e.getCause().getMessage());
+        return BaseResponseUtil.fail(SysExceptionEnum.PPARAMETER_EMPTY_EXCEPTION.getCode(), e.getCause().getMessage());
+    }
 
     /**
-     * 数据校验异常 及 系统异常
+     * 校验异常处理
      */
-    @ExceptionHandler(value = Exception.class)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseBody
-    public BaseResponse<Object> handleBindException(Exception e) {
-        if (e instanceof MethodArgumentNotValidException) {
-            MethodArgumentNotValidException methodArgumentNotValidException = (MethodArgumentNotValidException) e;
-            log.error(Constant.LOG_INFO_PREFIX, methodArgumentNotValidException.getMessage());
-            return BaseResponseUtil.fail(ExceptionConstantEnum.PARAMS_NOT_RIGHT.getCode(), methodArgumentNotValidException.getBindingResult().getAllErrors().get(0).getDefaultMessage());
-        }
-        if (e instanceof BindException) {
-            BindException bindException = (BindException) e;
-            log.error(Constant.LOG_INFO_PREFIX, bindException.getMessage());
-            return BaseResponseUtil.fail(ExceptionConstantEnum.PARAMS_NOT_RIGHT.getCode(), bindException.getMessage());
+    public BaseResponse<Object> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
+        log.warn("系统参数校验异常，异常信息：", e);
+        return BaseResponseUtil.fail(SysExceptionEnum.PPARAMETER_EMPTY_EXCEPTION.getCode(), e.getBindingResult().getFieldErrors().stream()
+                .map(FieldError::getDefaultMessage).collect(Collectors.joining(",")));
+    }
 
-        }
-        if (e instanceof ConstraintViolationException) {
-            ConstraintViolationException constraintViolationException = (ConstraintViolationException) e;
-            log.error(Constant.LOG_INFO_PREFIX, constraintViolationException.getMessage());
-            return BaseResponseUtil.fail(ExceptionConstantEnum.PARAMS_NOT_RIGHT.getCode(), constraintViolationException.getMessage());
-        }
-        // SQL 操作异常
-        if (e instanceof SQLException) {
-            SQLException sqlException = (SQLException) e;
-            log.error("SQL异常，异常信息：{}", sqlException.getMessage());
-            return BaseResponseUtil.fail(ExceptionConstantEnum.SQL_ERROR_EXCEPTION.getCode(), sqlException.getMessage());
+    /**
+     * 系统业务异常处理
+     */
+    @ExceptionHandler(ServiceException.class)
+    @ResponseBody
+    public BaseResponse<Object> handleServiceException(ServiceException e) {
+        // 打印业务异常日志
+        log.warn("系统业务逻辑异常，异常状态码 {}，异常信息：{}", e.code, e.getMessage(), e);
+        return BaseResponseUtil.fail(e.code, e.getMessage());
+    }
 
-        }
-        log.error("系统异常，异常信息：{}", e.getMessage());
+    /**
+     * 系统数据访问异常处理
+     */
+    @ExceptionHandler(DataAccessException.class)
+    @ResponseBody
+    public BaseResponse<Object> handleDataAccessException(DataAccessException e) {
+        log.error("系统数据访问异常，异常信息：{}", e.getMessage());
         return BaseResponseUtil.error(SysExceptionEnum.SYS_EXCEPTION);
     }
 
     /**
-     * log.error("发生系统异常，异常信息：{}", exception.getMessage());
-     * 业务异常
+     * 系统异常处理
      */
-    @ExceptionHandler(value = ServiceException.class)
+    @ExceptionHandler(Exception.class)
     @ResponseBody
-    public BaseResponse<Object> handleServiceException(ServiceException e, HttpServletRequest request) {
-        // 打印业务异常日志
-        log.error("接口: {} 异常，异常状态码 {}，异常信息：{}", request.getRequestURI(), e.code, e.getMessage(), e);
-        return BaseResponseUtil.fail(e.code, e.getMessage());
+    public BaseResponse<Object> handleException(Exception e) {
+        log.error("系统异常，异常信息：{}", e.getMessage());
+        return BaseResponseUtil.error(SysExceptionEnum.SYS_EXCEPTION);
     }
 
 }

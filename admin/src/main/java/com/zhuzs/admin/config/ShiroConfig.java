@@ -9,8 +9,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author: zhu_zishuang
- * @date: 2020-10-09
+ * shiro 配置类
+ *
+ * @author zhu_zishuang
+ * @date 2021-03-12
  */
 @Configuration
 public class ShiroConfig {
@@ -20,8 +22,8 @@ public class ShiroConfig {
      * @return
      */
     @Bean
-    public UserRealm userRealm() {
-        return new UserRealm();
+    public MyRealm userRealm() {
+        return new MyRealm();
     }
 
     /**

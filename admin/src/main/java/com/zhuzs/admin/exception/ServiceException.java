@@ -3,10 +3,10 @@ package com.zhuzs.admin.exception;
 import com.zhuzs.admin.comm.ExceptionInterface;
 
 /**
- * 业务异常累(业务处理时手动抛出异常)
+ * 业务异常类(业务处理时手动抛出异常)
  *
- * @author: zhu_zishuang
- * @date: 2020-04-22 15:35
+ * @author zhu_zishuang
+ * @date 2021-03-12
  */
 public class ServiceException extends RuntimeException {
 

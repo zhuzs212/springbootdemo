@@ -2,7 +2,6 @@ package com.zhuzs.admin.zhuzsdemo.task;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 /**
@@ -22,7 +21,7 @@ public class TaskDemo {
     @Autowired
     private TaskDemoService taskDemoService;
 
-    @Scheduled(cron = "*/10 * * * * ?")
+    //        @Scheduled(cron = "5 * * * * *")
     public void dailyWrittingTask() {
         log.info("定时任务写作练习，开始执行！");
         taskDemoService.dailyWriting();

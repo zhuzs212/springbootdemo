@@ -6,8 +6,8 @@ import lombok.Getter;
 /**
  * 线程类型枚举类
  *
- * @author: zhu_zishuang
- * @date: 2020-11-26
+ * @author zhu_zishuang
+ * @date 2021-03-12
  */
 @AllArgsConstructor
 public enum ThreadTypeEnum {

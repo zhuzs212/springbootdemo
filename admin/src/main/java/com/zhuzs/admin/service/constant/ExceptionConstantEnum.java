@@ -6,10 +6,10 @@ import lombok.Getter;
 import lombok.experimental.Accessors;
 
 /**
- * 异常枚举
+ * 业务异常枚举
  *
- * @Author zhu_zishuang
- * @Date 2020-09-17
+ * @author zhu_zishuang
+ * @date 2020-09-17
  */
 @Accessors(chain = true)
 @AllArgsConstructor
@@ -22,23 +22,7 @@ public enum ExceptionConstantEnum implements ExceptionInterface {
     /**
      * SQL异常
      **/
-    SQL_ERROR_EXCEPTION(501, "SQL执行异常!"),
-
-    /* ===========================User====================================== */
-    /**
-     * 账号异常
-     */
-    ACCOUNT_NOT(10004, "账号异常!"),
-
-    /**
-     * 用户不存在异常
-     */
-    USER_NOT_EXIT_EXCEPTION(601, "用户不存在异常"),
-
-    /**
-     * 无权访问
-     */
-    PERMISSION_NOT(10003, "无访问权限");
+    SQL_ERROR_EXCEPTION(501, "SQL执行异常!");
 
     /**
      * 结果类型CODE

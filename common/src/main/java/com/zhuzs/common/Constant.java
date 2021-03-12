@@ -1,7 +1,8 @@
 package com.zhuzs.common;
 
 /**
- * @description：常量类
+ * 常量类
+ *
  * @author: zhu_zishuang
  * @date: 2020-04-22 14:22
  */
@@ -10,7 +11,7 @@ public final class Constant {
      * 构造器私有化
      */
     private Constant() {
-
+        // 可抛出异常，防止通过反射实例化对象
     }
 
     /**
