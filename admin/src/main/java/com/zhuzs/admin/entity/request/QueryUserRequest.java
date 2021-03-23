@@ -28,5 +28,7 @@ public class QueryUserRequest {
      */
     @ApiModelProperty(value = "年龄")
     private Integer age;
+
+    private String token;
 }
 

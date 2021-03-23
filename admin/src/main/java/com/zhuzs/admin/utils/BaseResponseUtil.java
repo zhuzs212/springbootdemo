@@ -3,7 +3,7 @@ package com.zhuzs.admin.utils;
 import com.zhuzs.admin.comm.BaseResponse;
 import com.zhuzs.admin.comm.ExceptionInterface;
 import com.zhuzs.admin.exception.ServiceException;
-import com.zhuzs.admin.exception.SysExceptionEnum;
+import com.zhuzs.admin.comm.SysExceptionEnum;
 import com.zhuzs.common.Constant;
 
 /**

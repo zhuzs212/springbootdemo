@@ -1,12 +1,11 @@
-package com.zhuzs.admin.controller;
+package com.zhuzs.admin.controller.usercontroller;
 
 import com.zhuzs.admin.annotation.InterceptRequestParamAnnotation;
+import com.zhuzs.admin.controller.BaseController;
 import com.zhuzs.admin.entity.domain.UserDO;
 import com.zhuzs.admin.entity.request.LoginUserRequest;
 import com.zhuzs.admin.entity.request.QueryUserRequest;
 import com.zhuzs.admin.service.UserService;
-import com.zhuzs.admin.utils.ShiroUtils;
-import com.zhuzs.common.Constant;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
@@ -16,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * User 控制器
@@ -48,9 +47,7 @@ public class UserController extends BaseController {
      */
     @PostMapping("/queryUser")
     @ApiOperation("查询单个用户")
-    public UserDO queryUser(@RequestBody QueryUserRequest queryUserRequest, HttpSession session) {
-        ShiroUtils.checkRole(Constant.ADMIN);
-        System.out.println(" session 中的 user： " + session.getAttribute("user"));
+    public UserDO queryUser(@RequestBody QueryUserRequest queryUserRequest, HttpServletRequest request) throws Exception {
         return userService.getUser(queryUserRequest.getName());
     }
 
@@ -100,5 +97,15 @@ public class UserController extends BaseController {
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
         return true;
+    }
+
+    /**
+     * 需要 Token 验证的接口
+     *
+     * @return
+     */
+    @PostMapping("/info")
+    public String info() {
+        return "info";
     }
 }

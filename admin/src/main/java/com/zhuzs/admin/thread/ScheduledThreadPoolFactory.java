@@ -2,7 +2,7 @@ package com.zhuzs.admin.thread;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.zhuzs.admin.exception.ServiceException;
-import com.zhuzs.admin.exception.SysExceptionEnum;
+import com.zhuzs.admin.comm.SysExceptionEnum;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ScheduledThreadPoolExecutor;

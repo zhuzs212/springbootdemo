@@ -14,6 +14,10 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 public enum OperationEnum implements ExceptionInterface {
     /**
+     * 登陆成功
+     */
+    LOGIN_SUCCESS(200, "登陆成功！"),
+    /**
      * 新增操作成功
      */
     SAVE_SUCCESS(201, "新增成功！"),

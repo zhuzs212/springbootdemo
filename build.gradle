@@ -84,8 +84,11 @@ subprojects {
 //        // Nacos的服务发现的依赖 nacos-discovery-spring-boot-starter
 //        compile group: 'com.alibaba.boot', name: 'nacos-discovery-spring-boot-starter', version: '0.2.7'
 
-        
-        
+// https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
+        implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+[]
+
+
 
 
     }

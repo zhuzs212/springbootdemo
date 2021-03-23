@@ -2,7 +2,7 @@ package com.zhuzs.admin.advice;
 
 import com.zhuzs.admin.comm.BaseResponse;
 import com.zhuzs.admin.exception.ServiceException;
-import com.zhuzs.admin.exception.SysExceptionEnum;
+import com.zhuzs.admin.comm.SysExceptionEnum;
 import com.zhuzs.admin.utils.BaseResponseUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.AuthenticationException;

@@ -1,7 +1,7 @@
 package com.zhuzs.admin.controller;
 
 import com.zhuzs.admin.exception.ServiceException;
-import com.zhuzs.admin.exception.SysExceptionEnum;
+import com.zhuzs.admin.comm.SysExceptionEnum;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;

@@ -2,7 +2,7 @@ package com.zhuzs.admin.utils;
 
 import com.zhuzs.admin.entity.domain.UserDO;
 import com.zhuzs.admin.exception.ServiceException;
-import com.zhuzs.admin.exception.SysExceptionEnum;
+import com.zhuzs.admin.comm.SysExceptionEnum;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.stereotype.Component;
