@@ -1,9 +1,10 @@
-package com.zhuzs.admin.thread;
+package com.zhuzs.admin.zhuzsdemo.thread;
 
-import com.zhuzs.admin.comm.ThreadTypeEnum;
+import com.zhuzs.admin.constant.ThreadTypeEnum;
 import com.zhuzs.admin.zhuzsdemo.task.TaskDemoService;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.annotation.Resource;
 import java.util.UUID;
 
 /**

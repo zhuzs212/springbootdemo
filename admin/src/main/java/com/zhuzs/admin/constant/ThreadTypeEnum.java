@@ -1,4 +1,4 @@
-package com.zhuzs.admin.comm;
+package com.zhuzs.admin.constant;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.zhuzs.admin.exception;
+package com.zhuzs.admin.service.exception;
 
 import com.zhuzs.admin.comm.ExceptionInterface;
 

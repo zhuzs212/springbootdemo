@@ -1,6 +1,6 @@
 package com.zhuzs.admin.zhuzsdemo;
 
-import com.zhuzs.admin.thread.ScheduledThreadPoolFactory;
+import com.zhuzs.admin.zhuzsdemo.thread.ScheduledThreadPoolFactory;
 
 /**
  * 死锁案例

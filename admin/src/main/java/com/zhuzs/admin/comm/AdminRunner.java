@@ -1,4 +1,4 @@
-package com.zhuzs.admin.config;
+package com.zhuzs.admin.comm;
 
 import com.zhuzs.admin.zhuzsdemo.task.TaskDemoService;
 import lombok.extern.slf4j.Slf4j;

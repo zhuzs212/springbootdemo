@@ -1,6 +1,6 @@
-package com.zhuzs.admin.thread;
+package com.zhuzs.admin.zhuzsdemo.thread;
 
-import com.zhuzs.admin.comm.ThreadTypeEnum;
+import com.zhuzs.admin.constant.ThreadTypeEnum;
 import lombok.Data;
 
 /**

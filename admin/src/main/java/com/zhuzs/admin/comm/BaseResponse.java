@@ -29,7 +29,6 @@ public class BaseResponse<T> {
      **/
     private String message;
 
-
     /**
      * 结果数据
      **/

@@ -1,4 +1,4 @@
-package com.zhuzs.admin.annotation;
+package com.zhuzs.admin.annotation.checkparam;
 
 import java.lang.annotation.*;
 

@@ -1,4 +1,4 @@
-package com.zhuzs.admin.service.constant;
+package com.zhuzs.admin.service.exception;
 
 import com.zhuzs.admin.comm.ExceptionInterface;
 import lombok.AllArgsConstructor;

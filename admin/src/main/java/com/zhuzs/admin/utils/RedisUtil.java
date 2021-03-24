@@ -1,8 +1,8 @@
 package com.zhuzs.admin.utils;
 
-import com.zhuzs.admin.comm.ExpireEnum;
-import com.zhuzs.admin.exception.ServiceException;
-import com.zhuzs.admin.comm.SysExceptionEnum;
+import com.zhuzs.admin.constant.ExpireEnum;
+import com.zhuzs.admin.service.exception.ServiceException;
+import com.zhuzs.admin.constant.SysExceptionEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.BoundListOperations;
 import org.springframework.data.redis.core.RedisTemplate;

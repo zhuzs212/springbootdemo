@@ -1,8 +1,8 @@
-package com.zhuzs.admin.thread;
+package com.zhuzs.admin.zhuzsdemo.thread;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import com.zhuzs.admin.exception.ServiceException;
-import com.zhuzs.admin.comm.SysExceptionEnum;
+import com.zhuzs.admin.service.exception.ServiceException;
+import com.zhuzs.admin.constant.SysExceptionEnum;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ScheduledThreadPoolExecutor;

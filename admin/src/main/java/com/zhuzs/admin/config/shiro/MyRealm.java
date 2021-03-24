@@ -1,8 +1,8 @@
-package com.zhuzs.admin.config;
+package com.zhuzs.admin.config.shiro;
 
 import com.zhuzs.admin.entity.domain.UserDO;
-import com.zhuzs.admin.exception.ServiceException;
-import com.zhuzs.admin.comm.SysExceptionEnum;
+import com.zhuzs.admin.service.exception.ServiceException;
+import com.zhuzs.admin.constant.SysExceptionEnum;
 import com.zhuzs.admin.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;

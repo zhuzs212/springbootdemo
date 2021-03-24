@@ -1,6 +1,7 @@
 package com.zhuzs.admin.controller.usercontroller;
 
-import com.zhuzs.admin.annotation.InterceptRequestParamAnnotation;
+import com.zhuzs.admin.annotation.checkparam.InterceptRequestParamAnnotation;
+import com.zhuzs.admin.annotation.jwt.JwtPermissions;
 import com.zhuzs.admin.controller.BaseController;
 import com.zhuzs.admin.entity.domain.UserDO;
 import com.zhuzs.admin.entity.request.LoginUserRequest;
@@ -61,25 +62,24 @@ public class UserController extends BaseController {
      * @date 2020-10-23
      */
     @PostMapping("/login")
-    @ApiOperation("登陆")
     @InterceptRequestParamAnnotation
     public Boolean login(@RequestBody LoginUserRequest request, Model model) {
 
-        // 获取 subject 认证主体（这里也就是现在登录的用户）
-        Subject subject = SecurityUtils.getSubject();
-
-        // 创建出一个 Token 内容本质基于前台的用户名和密码（不一定正确）
-        UsernamePasswordToken token = new UsernamePasswordToken(request.getName(), request.getPassword());
-
-        // 由于是根据name参数获取的，我这里封装了一下
-        UserDO user = new UserDO();
-        user.setName(request.getName());
-        user.setPassword(request.getPassword());
-        user.setOrgNo(request.getOrgNo());
-        // 认证开始，这里会跳转到自定义的 UserRealm 中
-        subject.login(token);
-        UserDO userDO = (UserDO) subject.getPrincipal();
-        subject.getSession().setAttribute("userDO", userDO);
+//        // 获取 subject 认证主体（这里也就是现在登录的用户）
+//        Subject subject = SecurityUtils.getSubject();
+//
+//        // 创建出一个 Token 内容本质基于前台的用户名和密码（不一定正确）
+//        UsernamePasswordToken token = new UsernamePasswordToken(request.getName(), request.getPassword());
+//
+//        // 由于是根据name参数获取的，我这里封装了一下
+//        UserDO user = new UserDO();
+//        user.setName(request.getName());
+//        user.setPassword(request.getPassword());
+//        user.setOrgNo(request.getOrgNo());
+//        // 认证开始，这里会跳转到自定义的 UserRealm 中
+//        subject.login(token);
+//        UserDO userDO = (UserDO) subject.getPrincipal();
+//        subject.getSession().setAttribute("userDO", userDO);
         return true;
     }
 
@@ -105,6 +105,7 @@ public class UserController extends BaseController {
      * @return
      */
     @PostMapping("/info")
+    @JwtPermissions
     public String info() {
         return "info";
     }

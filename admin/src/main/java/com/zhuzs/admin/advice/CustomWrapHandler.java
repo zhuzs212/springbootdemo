@@ -1,6 +1,6 @@
 package com.zhuzs.admin.advice;
 
-import com.zhuzs.admin.comm.OperationEnum;
+import com.zhuzs.admin.constant.OperationEnum;
 import com.zhuzs.admin.utils.BaseResponseUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
@@ -33,7 +33,7 @@ public class CustomWrapHandler<T> implements ResponseBodyAdvice<T> {
          * 增、删、改操作返回的状态
          */
         if (body.getClass().equals(OperationEnum.class)) {
-            log.error("接口: {} , 增删改方法！" + request.getURI());
+            log.info("接口: {} , 增删改方法！" + request.getURI());
             return (T) BaseResponseUtil.success((OperationEnum) body);
         }
 
