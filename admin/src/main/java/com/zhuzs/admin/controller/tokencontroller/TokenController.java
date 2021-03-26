@@ -2,11 +2,13 @@ package com.zhuzs.admin.controller.tokencontroller;
 
 import com.zhuzs.admin.annotation.jwt.JwtPermissions;
 import com.zhuzs.admin.constant.OperationEnum;
-import com.zhuzs.admin.utils.JwtUtil;
 import com.zhuzs.admin.entity.request.LoginUserRequest;
-import org.springframework.web.bind.annotation.*;
+import com.zhuzs.admin.utils.JwtUtil;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -18,8 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 @RequestMapping("/token")
 public class TokenController {
-    @Resource
-    private JwtUtil jwtConfig;
 
     /**
      * 拦截器直接放行，返回Token
@@ -29,7 +29,7 @@ public class TokenController {
     @PostMapping("/login")
     public OperationEnum login(@RequestBody LoginUserRequest request, HttpServletResponse response) {
         // 省略数据源校验
-        String token = jwtConfig.getToken(request.getName() + request.getPassword());
+        String token = JwtUtil.getToken(request.getName() + request.getPassword());
         response.setHeader("token", token);
         return OperationEnum.LOGIN_SUCCESS;
     }
@@ -44,4 +44,5 @@ public class TokenController {
     public String info() {
         return "info";
     }
+
 }

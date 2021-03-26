@@ -9,8 +9,8 @@ import com.zhuzs.admin.entity.request.QueryUserRequest;
 import com.zhuzs.admin.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @RequestMapping(value = "/user", method = {RequestMethod.POST})
 @Api(tags = "用户管理")
+@Slf4j
 public class UserController extends BaseController {
 
     /**
