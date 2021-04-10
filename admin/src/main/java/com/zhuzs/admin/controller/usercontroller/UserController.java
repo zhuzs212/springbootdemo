@@ -13,10 +13,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * User 控制器
@@ -57,31 +57,14 @@ public class UserController extends BaseController {
      * 登陆接口
      *
      * @param request
-     * @param model
      * @return
      * @author zhu_zishuang
      * @date 2020-10-23
      */
     @PostMapping("/login")
     @InterceptRequestParamAnnotation
-    public Boolean login(@RequestBody LoginUserRequest request, Model model) {
-
-//        // 获取 subject 认证主体（这里也就是现在登录的用户）
-//        Subject subject = SecurityUtils.getSubject();
-//
-//        // 创建出一个 Token 内容本质基于前台的用户名和密码（不一定正确）
-//        UsernamePasswordToken token = new UsernamePasswordToken(request.getName(), request.getPassword());
-//
-//        // 由于是根据name参数获取的，我这里封装了一下
-//        UserDO user = new UserDO();
-//        user.setName(request.getName());
-//        user.setPassword(request.getPassword());
-//        user.setOrgNo(request.getOrgNo());
-//        // 认证开始，这里会跳转到自定义的 UserRealm 中
-//        subject.login(token);
-//        UserDO userDO = (UserDO) subject.getPrincipal();
-//        subject.getSession().setAttribute("userDO", userDO);
-        return true;
+    public Map<String, String> login(@RequestBody LoginUserRequest request) {
+        return userService.login(request);
     }
 
     /**

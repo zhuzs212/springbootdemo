@@ -29,9 +29,9 @@ public enum SysExceptionEnum implements ExceptionInterface {
     ACCOUNT_NOT_EXIST(10002, "用户不存在!"),
 
     /**
-     * 密码错误
+     * 用户名或密码错误
      */
-    PASSWORD_ERROR(10003, "密码错误!"),
+    ACCOUNT_OR_PASSWORD_ERROR(10003, "用户名或密码错误，请重新输入!"),
 
     /**
      * token为空，鉴权失败
@@ -71,7 +71,19 @@ public enum SysExceptionEnum implements ExceptionInterface {
     /**
      * 文件导出关闭流异常
      */
-    EXPORT_EXCEPTION(10011, "文件导出关闭流异常!");
+    EXPORT_EXCEPTION(10011, "文件导出关闭流异常!"),
+
+
+    /**
+     * 账号已被禁用
+     */
+    ACCOUNT_IS_DISABLE(10012, "您的账号已被禁用，请联系管理员"),
+
+    /**
+     * 密码错误
+     */
+    PASSWORD_ERROR(10013, "用户名或密码错误，请重新输入!"),
+    ;
 
     @Getter
     private final int code;

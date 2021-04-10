@@ -28,10 +28,9 @@ public class JwtUtil {
     /**
      * 私有化 构造方法
      */
-    private JwtUtil() {
+    private JwtUtil(){
 
     }
-
     /**
      * 根据身份ID标识，生成Token
      *
