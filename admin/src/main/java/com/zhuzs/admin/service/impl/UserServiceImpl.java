@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Cacheable(cacheNames = "user", key = "#name", unless = "#result == null")
+//    @Cacheable(cacheNames = "user", key = "#name", unless = "#result == null")
     public UserDO getUser(String name) {
         return userMapper.getUser(name);
     }

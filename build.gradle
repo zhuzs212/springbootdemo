@@ -94,6 +94,9 @@ subprojects {
 //        compile group: 'com.alibaba.boot', name: 'nacos-config-spring-boot-starter', version: '0.2.7'
 //        // Nacos的服务发现的依赖 nacos-discovery-spring-boot-starter
 //        compile group: 'com.alibaba.boot', name: 'nacos-discovery-spring-boot-starter', version: '0.2.7'
+        // https://mvnrepository.com/artifact/cn.hutool/hutool-all
+        implementation group: 'cn.hutool', name: 'hutool-all', version: '5.6.6'
+
     }
 }
 

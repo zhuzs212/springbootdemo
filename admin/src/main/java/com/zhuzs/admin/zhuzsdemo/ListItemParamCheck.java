@@ -35,10 +35,6 @@ public class ListItemParamCheck {
                 .entrySet().stream().filter(entry -> entry.getValue() > 1).map(Map.Entry::getKey).count();
         return existTotal > 0;
     }
-}
-
-class test {
-
     public static void main(String[] args) {
         List<UserDO> list = new ArrayList<>();
         UserDO u1 = new UserDO();
@@ -54,4 +50,5 @@ class test {
         System.out.println("flag:" + flag);
     }
 }
+
 
