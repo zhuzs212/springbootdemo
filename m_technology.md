@@ -7,7 +7,44 @@
 3.Annotation在哪里使用
 - package、class、method、filed等，相当于给他们添加了一些额外的辅助信息，
   我们可以通过反射机制实现对这些元素的访问。 
+4.元注解
+  负责注解其他注解，即用来对其他annotation类型作说明。（java.lang.annotation包）
+- @Target：指定注解的作用范围（ElementType）；
+- @Retention：指定注解的生命周期（RetentionPolicy：保留策略 runtime > class > sources）
+- @Documented：说明该注解将被包含在 Javadoc 中；
+- @Inherited：子类可以继承父类的该注解；
+
+5.自定义注解
+- @interface 
+  
+  
 ########################################### 反射
+1.Java反射机制概述
+- Reflection 是Java被视为动态语言的关键。反射机制允许程序在执行期借助于Reflection API
+  取得任何类的内部信息，并能直接操作任意对象的内部属性及方法。
+- 加载完类之后，在堆内存的方法区中就产生了一个Class类型的对象（一个类只有一个Class对象），
+  这个对象包含了完整的类的结构信息。
+优点：
+    可以实现动态创建对象和编译，灵活性大；
+缺点：
+    反射是一种解释性操作，耗性能；
+
+2.理解Class类并获取Class实例 
+- Class 本身也是一个类
+- Class对象只能由系统建立
+- 一个加载的类在JVM中只会有一个Class实例
+- 一个Class对象对应的是一个加载到JVM中的.class文件
+- 每个类的实例都会记得自己是由哪个Class实例所生成
+- 通过Class可以完整地得到一个类中的所有被加载的结构；
+- Class类是Reflection的根源，针对任何你想动态加载、运行的类，唯有先获得相应的Class对象
+
+3.类的加载与ClassLoader
+
+4.创建运行时类的对象
+
+5.获取运行时类的完整结构
+
+6.调用运行时类的指定结构
 
 ########################################### 定时任务
 1.基于@Scheduled注解和@EnableScheduling注解的单线程实现；
