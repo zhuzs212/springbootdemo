@@ -100,6 +100,8 @@ subprojects {
         implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
 // https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore
         implementation group: 'org.apache.httpcomponents', name: 'httpcore', version: '4.4.14'
+// https://mvnrepository.com/artifact/org.apache.httpcomponents/httpmime
+        implementation group: 'org.apache.httpcomponents', name: 'httpmime', version: '4.5.13'
 
     }
 }

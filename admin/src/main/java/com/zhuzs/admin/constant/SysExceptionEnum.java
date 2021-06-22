@@ -83,6 +83,11 @@ public enum SysExceptionEnum implements ExceptionInterface {
      * 密码错误
      */
     PASSWORD_ERROR(10013, "用户名或密码错误，请重新输入!"),
+
+    /**
+     * 文件读取失败
+     */
+    FILE_READ_EXCEPTION(10014, "文件读取异常!"),
     ;
 
     @Getter
