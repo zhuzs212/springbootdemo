@@ -98,13 +98,15 @@ public class HttpUtil {
             bos.close();
             return bos.toByteArray();
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error(SysExceptionEnum.FILE_READ_EXCEPTION.getMessage());
             throw new ServiceException(SysExceptionEnum.FILE_READ_EXCEPTION);
         }
     }
 
     /**
      * HTTP POST请求
+     * <p>
+     * TODO 通过 JSONObject.parseObject(jsonString, XXX.class);
      *
      * @param httpEntity
      * @param httpPost
@@ -130,7 +132,6 @@ public class HttpUtil {
      */
     public static String doPostJsonHttp(String url, Object params) {
         // 声明 口响应数据 接收对象
-        String responseJson = "";
         try {
             // 配置http请求参数
             HttpPost httpPost = new HttpPost(url);
@@ -138,10 +139,10 @@ public class HttpUtil {
             BasicHttpEntity basicHttpEntity = new BasicHttpEntity();
             basicHttpEntity.setContent(new ByteArrayInputStream(JSONObject.toJSONString(params).getBytes(Charset.forName("UTF-8"))));
             // 解析 接口响应数据
-            responseJson = HttpUtil.doPostHttp(basicHttpEntity, httpPost);
+            return HttpUtil.doPostHttp(basicHttpEntity, httpPost);
         } catch (IOException e) {
-            e.printStackTrace(System.out);
+            log.error(SysExceptionEnum.FILE_READ_EXCEPTION.getMessage());
+            throw new ServiceException(SysExceptionEnum.FILE_READ_EXCEPTION);
         }
-        return responseJson;
     }
 }
