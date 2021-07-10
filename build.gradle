@@ -41,6 +41,9 @@ subprojects {
         mavenCentral()
     }
 
+    bootJar {
+        enabled =false  // 默认不需要打可执行jar包
+    }
     // 通用依赖
     dependencies {
         compile fileTree(dir: '../libs', include: ['*.jar'])
